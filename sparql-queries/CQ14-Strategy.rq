@@ -1,0 +1,7 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?knowledge ?strategy WHERE {
+  { ?knowledge a :KBCodificationStrategy . BIND('Codification' AS ?strategy) }
+  UNION
+  { ?knowledge a :KBPersonalizationStrategy . BIND('Personalization' AS ?strategy) }
+}

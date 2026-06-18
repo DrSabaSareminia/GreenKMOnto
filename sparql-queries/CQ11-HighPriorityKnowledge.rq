@@ -1,0 +1,10 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?knowledge ?difficulty ?strategic ?cost WHERE {
+  ?knowledge a :KnowledgeBase .
+  ?knowledge :hasDifficultyRate ?difficulty .
+  ?knowledge :hasStrategicImportancyRate ?strategic .
+  ?knowledge :hasCostRate ?cost .
+  FILTER(?difficulty > 7 && ?strategic > 7 && ?cost > 7)
+}
+ORDER BY DESC(?difficulty)

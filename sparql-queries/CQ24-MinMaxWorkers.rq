@@ -1,0 +1,9 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?knowledge (COUNT(?person) AS ?workerCount) WHERE {
+  ?knowledge a :GreenKnowledge .
+  ?person :prepares ?knowledge .
+}
+GROUP BY ?knowledge
+ORDER BY ?workerCount
+LIMIT 1

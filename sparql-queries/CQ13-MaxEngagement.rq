@@ -1,0 +1,9 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?knowledge (COUNT(DISTINCT ?person) AS ?preparerCount) WHERE {
+  ?knowledge a :KnowledgeBase .
+  ?person :prepares ?knowledge .
+}
+GROUP BY ?knowledge
+ORDER BY DESC(?preparerCount)
+LIMIT 1

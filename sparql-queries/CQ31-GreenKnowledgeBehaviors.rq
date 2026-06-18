@@ -1,0 +1,7 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?knowledge ?project ?technology WHERE {
+  ?knowledge :isCompletedFor ?project .
+  ?project :hasApplied ?technology .
+  ?technology a :GreenTechnology .
+}

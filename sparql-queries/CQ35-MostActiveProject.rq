@@ -1,0 +1,11 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?aspect (COUNT(DISTINCT ?project) AS ?projectCount) WHERE {
+  ?project a :GreenTechProject .
+  ?project :hasApplied ?technology .
+  ?technology :evaluatedBy ?parameter .
+  ?parameter a ?aspect .
+  ?aspect rdfs:subClassOf* :EvaluationParameter .
+}
+GROUP BY ?aspect
+ORDER BY DESC(?projectCount)

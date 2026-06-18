@@ -1,0 +1,12 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?person (COUNT(DISTINCT ?class) AS ?diversity) WHERE {
+  ?person a :Person .
+  ?person :prepares ?kb .
+  ?kb a ?class .
+  FILTER(?class != :KnowledgeBase)
+  ?class rdfs:subClassOf* :EvaluationParameter .
+}
+GROUP BY ?person
+ORDER BY DESC(?diversity)
+LIMIT 1

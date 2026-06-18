@@ -1,0 +1,9 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?person (COUNT(DISTINCT ?project) AS ?projectCount) WHERE {
+  ?person a :Person .
+  ?project :hasDoneBy ?person .
+}
+GROUP BY ?person
+ORDER BY DESC(?projectCount)
+LIMIT 1

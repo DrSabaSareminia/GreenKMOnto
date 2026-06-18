@@ -1,0 +1,9 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?process (COUNT(?kb) AS ?kbCount) WHERE {
+  ?kb a :KnowledgeBase .
+  ?kb :isResultOf ?process .
+}
+GROUP BY ?process
+ORDER BY DESC(?kbCount)
+LIMIT 1

@@ -1,0 +1,10 @@
+PREFIX : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#>
+
+SELECT ?aspect (COUNT(?kb) AS ?kbCount) WHERE {
+  ?kb a :KnowledgeBase .
+  ?kb a ?aspect .
+  ?aspect rdfs:subClassOf* :EvaluationParameter .
+}
+GROUP BY ?aspect
+ORDER BY DESC(?kbCount)
+LIMIT 5
