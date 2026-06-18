@@ -1,0 +1,32 @@
+# CITATION.cff
+cff-version: 1.2.0
+message: "If you use this ontology, please cite it as below."
+title: "GreenKMOnto: Green Knowledge Management Ontology"
+authors:
+  - family-names: "Sareminia"
+    given-names: "Saba"
+    orcid: "https://orcid.org/0000-0002-8300-7288"
+version: 2.0-revised
+date-released: 2026-06-18
+license: MIT
+repository-code: "https://github.com/YourUsername/GreenKMOnto"
+url: "https://github.com/YourUsername/GreenKMOnto"
+keywords:
+  - ontology
+  - knowledge management
+  - green knowledge management
+  - semantic web
+  - sustainability
+  - OWL
+  - gUFO
+  - SCO-U
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Sareminia"
+      given-names: "Saba"
+      orcid: "https://orcid.org/0000-0002-8300-7288"
+  title: "Developing the Green Knowledge Management Ontology (GreenKMOnto): A Dynamic Framework for Green Knowledge Management in Organizations"
+  journal: "Applied Ontology"
+  year: 2026
+  Note: "Under review"
