@@ -1,0 +1,374 @@
+@prefix : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sco-u: <https://www.w3id.org/sco/sco-u#> .
+@base <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#> .
+
+<http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto> rdf:type owl:Ontology ;
+                                                                 owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
+                                                                             <https://www.w3id.org/sco/sco-u> ;
+                                                                 owl:versionInfo "2.0-revised" .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+gufo:historicallyDependsOn rdf:type owl:ObjectProperty .
+gufo:isCollectionMemberOf rdf:type owl:ObjectProperty .
+
+:assignTo rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf gufo:isCollectionMemberOf ;
+          owl:inverseOf :hasWorkForce ;
+          rdfs:domain :UnitMember ;
+          rdfs:range :OrganizationalUnit .
+
+:drives rdf:type owl:ObjectProperty ;
+        owl:inverseOf :isDrivedFrom ;
+        rdfs:domain :PolicyAndRegulation ;
+        rdfs:range :BestPractice , :GreenTechnology .
+
+:evaluatedBy rdf:type owl:ObjectProperty ;
+             owl:inverseOf :reportedFor ;
+             rdfs:domain :GreenTechnology ;
+             rdfs:range :EvaluationParameter .
+
+:hasApplied rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isAppliedIn ;
+            rdfs:domain :Project ;
+            rdfs:range :GreenTechnology .
+
+:hasDoneBy rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isInvolvedIn ;
+           rdfs:domain :Project ;
+           rdfs:range :Person .
+
+:hasKnowledge rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isCompletedFor ;
+              rdfs:domain :Project ;
+              rdfs:range :KnowledgeBase .
+
+:hasWorkForce rdf:type owl:ObjectProperty ;
+              rdfs:domain :OrganizationalUnit ;
+              rdfs:range :UnitMember .
+
+:isAppliedIn rdf:type owl:ObjectProperty ;
+             rdfs:domain :GreenTechnology ;
+             rdfs:range :Project .
+
+:isCompletedFor rdf:type owl:ObjectProperty ;
+                rdfs:domain :KnowledgeBase ;
+                rdfs:range :Project .
+
+:isDrivedFrom rdf:type owl:ObjectProperty ;
+              rdfs:domain :GreenTechnology ;
+              rdfs:range :PolicyAndRegulation .
+
+:isInvolvedIn rdf:type owl:ObjectProperty ;
+              rdfs:domain :UnitMember ;
+              rdfs:range :Project .
+
+:isMemberOf rdf:type owl:ObjectProperty ;
+            owl:equivalentProperty gufo:isCollectionMemberOf ;
+            rdfs:domain :UnitMember ;
+            rdfs:range :GroupMember .
+
+:isPreparedBy rdf:type owl:ObjectProperty ;
+              owl:inverseOf :prepares ;
+              rdfs:domain :KnowledgeBase ;
+              rdfs:range :Person .
+
+:isResponsibleOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :UnitMember ;
+                 rdfs:range :Project .
+
+:isResultOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf gufo:historicallyDependsOn ;
+            owl:inverseOf :requestedFor ;
+            rdfs:domain :KnowledgeBase ;
+            rdfs:range :Process .
+
+:isUsedIn rdf:type owl:ObjectProperty ;
+          owl:inverseOf :uses ;
+          rdfs:domain :BestPractice ;
+          rdfs:range :Project .
+
+:prepares rdf:type owl:ObjectProperty ;
+          rdfs:domain :Person ;
+          rdfs:range :KnowledgeBase .
+
+:reportedFor rdf:type owl:ObjectProperty ;
+             rdfs:domain :EvaluationParameter ;
+             rdfs:range :GreenTechnology .
+
+:reportedIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :EvaluationParameter ;
+            rdfs:range :KnowledgeBase .
+
+:requestedFor rdf:type owl:ObjectProperty ;
+              rdfs:domain :Process ;
+              rdfs:range :KnowledgeBase .
+
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:domain :Project ;
+      rdfs:range :BestPractice .
+
+
+#################################################################
+#    Data Properties
+#################################################################
+
+:demographic rdf:type owl:DatatypeProperty ;
+             rdfs:comment "Demographic characteristics (ID, title, name, year)" .
+
+:hasCodificationRate rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :typology ;
+                     rdfs:domain :KnowledgeBase ;
+                     rdfs:range xsd:int .
+
+:hasCompetetiveRate rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :typology ;
+                    rdfs:domain :KnowledgeBase ;
+                    rdfs:range xsd:int .
+
+:hasCostRate rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :risk ;
+             rdfs:domain :KnowledgeBase ;
+             rdfs:range xsd:int .
+
+:hasYearOfCreate rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :demographic ;
+                 rdfs:domain :KnowledgeBase ;
+                 rdfs:range xsd:gYear .
+
+:hasYearOfNeed rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :demographic ;
+               rdfs:domain :KnowledgeBase ;
+               rdfs:range xsd:gYear .
+
+:hasDifficultyRate rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :risk ;
+                   rdfs:domain :KnowledgeBase ;
+                   rdfs:range xsd:int .
+
+:hasGreenImportancyRate rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :risk ;
+                        rdfs:domain :KnowledgeBase ;
+                        rdfs:range xsd:int .
+
+:hasID rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :demographic ;
+       rdfs:domain owl:Thing ;
+       rdfs:range rdfs:Literal .
+
+:hasKnowledgeLocation rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :typology ;
+                      rdfs:domain :KnowledgeBase ;
+                      rdfs:range xsd:int .
+
+:hasKnowledgeType rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :typology ;
+                  rdfs:domain :KnowledgeBase ;
+                  rdfs:range xsd:int .
+
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :demographic ;
+         rdfs:domain :Person ;
+         rdfs:range rdfs:Literal .
+
+:hasScopeArea rdf:type owl:DatatypeProperty ;
+              rdfs:domain :PolicyAndRegulation ;
+              rdfs:range rdfs:Literal .
+
+:hasStrategicImportancyRate rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf :risk ;
+                            rdfs:domain :KnowledgeBase ;
+                            rdfs:range xsd:int .
+
+:hasTitle rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :demographic ;
+          rdfs:domain owl:Thing ;
+          rdfs:range rdfs:Literal .
+
+:hasTransparencyRate rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :typology ;
+                     rdfs:domain :KnowledgeBase ;
+                     rdfs:range xsd:int .
+
+:knowledgeAssessment rdf:type owl:DatatypeProperty ;
+                     rdfs:comment "Knowledge assessment properties (typology and risk)" .
+
+:processType rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Process ;
+             rdfs:range rdfs:Literal .
+
+:risk rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :knowledgeAssessment ;
+      rdfs:domain :KnowledgeBase .
+
+:typology rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :knowledgeAssessment ;
+          rdfs:domain :KnowledgeBase .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+gufo:AbstractIndividual rdf:type owl:Class .
+gufo:Event rdf:type owl:Class .
+gufo:Object rdf:type owl:Class .
+gufo:VariableCollection rdf:type owl:Class .
+
+:AuditReport rdf:type owl:Class ; rdfs:subClassOf :Report .
+:AutomationAndBusinessProcessSystem rdf:type owl:Class ; rdfs:subClassOf :InformationSystem .
+:BestPractice rdf:type owl:Class ; rdfs:subClassOf gufo:Object , sco-u:SCO_0000013 .
+:BiomassConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:Book rdf:type owl:Class ; rdfs:subClassOf :Documentation .
+:CarbonFootprintParameter rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:CommunityEngagement rdf:type owl:Class ; rdfs:subClassOf :SocialResponsibilityParameter .
+:Contract rdf:type owl:Class ; rdfs:subClassOf :Record .
+:CorrectivePreventiveActionRecord rdf:type owl:Class ; rdfs:subClassOf :Record .
+:Documentation rdf:type owl:Class ; rdfs:subClassOf :KnowledgeBase .
+:ElectricityConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:Emission rdf:type owl:Class ; rdfs:subClassOf :PolicyAndRegulation .
+:EmployeeSatisfaction rdf:type owl:Class ; rdfs:subClassOf :SocialResponsibilityParameter .
+:EmployeeTurnoverRate rdf:type owl:Class ; rdfs:subClassOf :SocialResponsibilityParameter .
+:EnergyConsumptionIndex rdf:type owl:Class ; rdfs:subClassOf :EnergyEfficiencyRate .
+:EnergyCostSaving rdf:type owl:Class ; rdfs:subClassOf :EnergyEfficiencyRate .
+:EnergyEfficiencyPolicy rdf:type owl:Class ; rdfs:subClassOf :PolicyAndRegulation .
+:EnergyEfficiencyRate rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:EnergyEfficiencyRatio rdf:type owl:Class ; rdfs:subClassOf :EnergyEfficiencyRate .
+:EnergyEfficientTechnology rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:EnergyIntensity rdf:type owl:Class ; rdfs:subClassOf :EnergyEfficiencyRate .
+:EnvironmentalManagementSystem rdf:type owl:Class ; rdfs:subClassOf :Systematic .
+:EvaluationParameter rdf:type owl:Class ; rdfs:subClassOf sco-u:SCO_0000003 ;
+    rdfs:comment "Measurable criteria for assessing sustainability performance, aligned with SCO-U IndicatorValue (SCO_0000003)." .
+:FuelConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:GreenKnowledge rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :KnowledgeBase
+                                                           [ rdf:type owl:Restriction ; owl:onProperty :isCompletedFor ; owl:someValuesFrom :GreenTechProject ]
+                                                         ) ] ;
+                rdfs:subClassOf :KnowledgeBase .
+:GreenKnowledgeWorker rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                                 [ rdf:type owl:Restriction ; owl:onProperty :prepares ; owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ; owl:onClass :GreenKnowledge ]
+                                                               ) ] ;
+                      rdfs:subClassOf :Person .
+:GreenTechnology rdf:type owl:Class ; rdfs:subClassOf gufo:Object , sco-u:SCO_0000013 ;
+    rdfs:comment "Tangible technologies or devices that contribute to environmental sustainability. Processual technologies (e.g., pyrolysis) are modeled as instances of :Process rather than :GreenTechnology." .
+:GreenhouseGasEmission rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:GroupMember rdf:type owl:Class ; rdfs:subClassOf :Person .
+:HighRiskGreenKB rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :HighRiskKB
+                                                            [ rdf:type owl:Restriction ; owl:onProperty :hasGreenImportancyRate ; owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                          ) ] ;
+                 rdfs:subClassOf :KnowledgeBase .
+:HighRiskKB rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :KnowledgeBase
+                                                       [ rdf:type owl:Restriction ; owl:onProperty :hasCostRate ; owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                       [ rdf:type owl:Restriction ; owl:onProperty :hasDifficultyRate ; owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                       [ rdf:type owl:Restriction ; owl:onProperty :hasStrategicImportancyRate ; owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                       [ rdf:type owl:Restriction ; owl:onProperty :hasCodificationRate ; owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                     ) ] ;
+            rdfs:subClassOf :KnowledgeBase .
+:HumanFinancialResourceUnit rdf:type owl:Class ; rdfs:subClassOf :OrganizationalUnit .
+:InformationSystem rdf:type owl:Class ; rdfs:subClassOf :KnowledgeBase .
+:InstructionProcedure rdf:type owl:Class ; rdfs:subClassOf :Documentation .
+:IntegratedTransactionalSystem rdf:type owl:Class ; rdfs:subClassOf :InformationSystem .
+:IntelligentAndExpertSystem rdf:type owl:Class ; rdfs:subClassOf :InformationSystem .
+:KBCodificationStrategy rdf:type owl:Class ;
+                        owl:equivalentClass [ owl:intersectionOf ( :KnowledgeBase
+                                                                   [ rdf:type owl:Class ; owl:complementOf [ rdf:type owl:Restriction ; owl:onProperty :hasKnowledgeLocation ; owl:hasValue 1 ] ]
+                                                                   [ rdf:type owl:Restriction ; owl:onProperty :hasKnowledgeType ; owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                                   [ rdf:type owl:Restriction ; owl:onProperty :hasCodificationRate ; owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                                   [ rdf:type owl:Restriction ; owl:onProperty :hasCompetetiveRate ; owl:maxQualifiedCardinality "5"^^xsd:nonNegativeInteger ; owl:onDataRange xsd:int ]
+                                                                 ) ] ;
+                        rdfs:subClassOf :KnowledgeBase .
+:KBPersonalizationStrategy rdf:type owl:Class ;
+                           owl:equivalentClass [ owl:intersectionOf ( :KnowledgeBase
+                                                                      [ rdf:type owl:Restriction ; owl:onProperty :hasCodificationRate ; owl:hasValue 10 ]
+                                                                      [ rdf:type owl:Restriction ; owl:onProperty :hasKnowledgeLocation ; owl:hasValue 1 ]
+                                                                    ) ] ;
+                           rdfs:subClassOf :KnowledgeBase .
+:KnowledgeBase rdf:type owl:Class ; rdfs:subClassOf gufo:Object .
+:LessonLearned rdf:type owl:Class ; rdfs:subClassOf :Record .
+:LifeCycleAssessment rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:LogSheet rdf:type owl:Class ; rdfs:subClassOf :Record .
+:ManagementReviewReport rdf:type owl:Class ; rdfs:subClassOf :Report .
+:ManagerialUnit rdf:type owl:Class ; rdfs:subClassOf :OrganizationalUnit .
+:MapVisualDoc rdf:type owl:Class ; rdfs:subClassOf :Documentation .
+:MaterialEfficiency rdf:type owl:Class ; rdfs:subClassOf :ResourceConservationRate .
+:MaterialSelectionAndLifecycleAnalysis rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:MaterialConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:NaturalGasConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:NonGreenTechProject rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :Project
+                                                                [ rdf:type owl:Class ; owl:complementOf [ rdf:type owl:Restriction ; owl:onProperty :hasApplied ; owl:someValuesFrom :GreenTechnology ] ]
+                                                              ) ] ;
+                     rdfs:subClassOf :Project .
+:OilConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:OrganizationalUnit rdf:type owl:Class ; rdfs:subClassOf gufo:VariableCollection , sco-u:SCO_0000015 .
+:PaperConsumption rdf:type owl:Class ; rdfs:subClassOf :CarbonFootprintParameter .
+:Person rdf:type owl:Class ; rdfs:subClassOf gufo:Object , sco-u:SCO_0000029 .
+:PolicyAndRegulation rdf:type owl:Class ; rdfs:subClassOf gufo:Object , sco-u:SCO_0000013 .
+:Process rdf:type owl:Class ; rdfs:subClassOf gufo:Event , sco-u:SCO_0000001 .
+:ProcessCore rdf:type owl:Class ; rdfs:subClassOf :Process .
+:ProcessInspective rdf:type owl:Class ; rdfs:subClassOf :Process .
+:ProcessManagerialAndPlanning rdf:type owl:Class ; rdfs:subClassOf :Process .
+:ProcessSupportive rdf:type owl:Class ; rdfs:subClassOf :Process .
+:ProjectProfile rdf:type owl:Class ; rdfs:subClassOf :Record .
+:Project rdf:type owl:Class ; rdfs:subClassOf gufo:Event , sco-u:SCO_0000001 .
+:Record rdf:type owl:Class ; rdfs:subClassOf :KnowledgeBase .
+:RecyclingMethod rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:RenewableEnergySource rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:Report rdf:type owl:Class ; rdfs:subClassOf :Documentation .
+:ResourceConservationRate rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:Session rdf:type owl:Class ; rdfs:subClassOf :Record .
+:SocialResponsibilityParameter rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:SustainableProcurement rdf:type owl:Class ; rdfs:subClassOf :PolicyAndRegulation .
+:GreenTechProject rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Project
+                                                             [ rdf:type owl:Restriction ; owl:onProperty :hasApplied ; owl:someValuesFrom :GreenTechnology ]
+                                                           ) ] ;
+                  rdfs:subClassOf :Project .
+:SustainableTransportationOption rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:Systematic rdf:type owl:Class ; rdfs:subClassOf :BestPractice .
+:Technical rdf:type owl:Class ; rdfs:subClassOf :BestPractice .
+:TechnologyDevelopmentUnit rdf:type owl:Class ; rdfs:subClassOf :OrganizationalUnit .
+:TechnologySupportUnit rdf:type owl:Class ; rdfs:subClassOf :OrganizationalUnit .
+:TimeAndBudgetPlan rdf:type owl:Class ; rdfs:subClassOf :Report .
+:TrainingAttendance rdf:type owl:Class ; rdfs:subClassOf :Record .
+:UnitMember rdf:type owl:Class ; rdfs:subClassOf :Person .
+:WasteGenerationRate rdf:type owl:Class ; rdfs:subClassOf :WasteReductionRate .
+:WasteMGT rdf:type owl:Class ; rdfs:subClassOf :PolicyAndRegulation .
+:WasteRecyclingRate rdf:type owl:Class ; rdfs:subClassOf :WasteReductionRate .
+:WasteReduction rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:WasteReductionRate rdf:type owl:Class ; rdfs:subClassOf :EvaluationParameter .
+:WasteToEnergyConservationRate rdf:type owl:Class ; rdfs:subClassOf :WasteReductionRate .
+:WaterConservationTechnique rdf:type owl:Class ; rdfs:subClassOf :GreenTechnology .
+:WaterEfficiency rdf:type owl:Class ; rdfs:subClassOf :ResourceConservationRate .
+
+
+#################################################################
+#    General Axioms (Disjoint Classes)
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ProcessCore
+                :ProcessInspective
+                :ProcessManagerialAndPlanning
+                :ProcessSupportive
+              )
+] .
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :WasteGenerationRate
+                :WasteRecyclingRate
+                :WasteToEnergyConservationRate
+              )
+] .
