@@ -26,8 +26,8 @@ This repository contains the ontology and SPARQL queries developed for the resea
 | Metric | Value |
 |--------|-------|
 | Classes | 87 |
-| Object Properties | 22 |
-| Data Properties | 21 |
+| Object Properties | 21 |
+| Data Properties | 19 |
 | Equivalent Classes | 8 |
 | Disjoint Axioms | 2 |
 | Version | 2.0-revised |
