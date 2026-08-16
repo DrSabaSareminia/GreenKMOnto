@@ -1,0 +1,681 @@
+@prefix : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sco-u: <https://www.w3id.org/sco/sco-u#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+gufo:AbstractIndividual a owl:Class ;
+    rdfs:comment "A class representing abstract individuals in the gUFO foundational ontology. Abstract individuals are non-physical entities such as concepts, descriptions, and information content."@en .
+
+<http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto> a owl:Ontology ;
+    rdfs:comment "GreenKMOnto: A Green Knowledge Management Ontology. This ontology integrates Triple Bottom Line sustainability principles with organisational knowledge management. The ontology comprises five core modules: Best Practices, Green Technologies, Policies and Regulations, Evaluation Parameters, and Knowledge Assets. These modules are interconnected through object properties that capture the relationships between sustainability initiatives, organisational processes, projects, and knowledge resources. The ontology supports automated reasoning for knowledge risk assessment, green knowledge classification, and strategy inference through defined equivalent classes."@en ;
+    owl:imports <http://purl.org/nemo/gufo#/1.0.0>,
+        <https://www.w3id.org/sco/sco-u> ;
+    owl:versionInfo "2.1-revised" .
+
+:AuditReport a owl:Class ;
+    rdfs:comment "An audit report as a knowledge resource. Audit reports document compliance assessments and quality evaluations."@en ;
+    rdfs:subClassOf :Report .
+
+:AutomationAndBusinessProcessSystem a owl:Class ;
+    rdfs:comment "An automation and business process system. These systems automate business processes and support operational efficiency."@en ;
+    rdfs:subClassOf :InformationSystem .
+
+:BiomassConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of biomass consumption as a carbon footprint indicator. This parameter assesses the use of biomass as an energy source."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:Book a owl:Class ;
+    rdfs:comment "A published or unpublished book as a knowledge resource. Books represent comprehensive, structured knowledge on specific topics."@en ;
+    rdfs:subClassOf :Documentation .
+
+:CommunityEngagement a owl:Class ;
+    rdfs:comment "A parameter measuring community engagement. This parameter assesses the organisation's relationship with local communities."@en ;
+    rdfs:subClassOf :SocialResponsibilityParameter .
+
+:Contract a owl:Class ;
+    rdfs:comment "A contract as a recorded knowledge resource. Contracts document formal agreements between parties."@en ;
+    rdfs:subClassOf :Record .
+
+:CorrectivePreventiveActionRecord a owl:Class ;
+    rdfs:comment "A corrective and preventive action record. These records document quality improvement actions and their outcomes."@en ;
+    rdfs:subClassOf :Record .
+
+:ElectricityConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of electricity consumption as a carbon footprint indicator. This parameter assesses electricity usage and associated emissions."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:EmissionPolicy a owl:Class ;
+    rdfs:comment "A policy or regulation concerning emissions, greenhouse gases, and atmospheric pollution. Emission policies drive the adoption of clean technologies."@en ;
+    rdfs:subClassOf :PolicyAndRegulation .
+
+:EmployeeSatisfaction a owl:Class ;
+    rdfs:comment "A parameter measuring employee satisfaction. This parameter assesses the well-being and engagement of employees."@en ;
+    rdfs:subClassOf :SocialResponsibilityParameter .
+
+:EmployeeTurnoverRate a owl:Class ;
+    rdfs:comment "A parameter measuring employee turnover rate. This parameter assesses workforce stability and retention."@en ;
+    rdfs:subClassOf :SocialResponsibilityParameter .
+
+:EnergyConsumptionIndex a owl:Class ;
+    rdfs:comment "An index measuring energy consumption. This parameter provides a comprehensive view of energy usage patterns."@en ;
+    rdfs:subClassOf :EnergyEfficiencyRate .
+
+:EnergyCostSaving a owl:Class ;
+    rdfs:comment "A parameter measuring energy cost savings. This parameter assesses the financial benefits of energy efficiency improvements."@en ;
+    rdfs:subClassOf :EnergyEfficiencyRate .
+
+:EnergyEfficiencyPolicy a owl:Class ;
+    rdfs:comment "A policy or regulation concerning energy efficiency and energy management. Energy efficiency policies promote the adoption of energy-efficient technologies."@en ;
+    rdfs:subClassOf :PolicyAndRegulation .
+
+:EnergyEfficiencyRatio a owl:Class ;
+    rdfs:comment "A ratio measuring energy efficiency. This parameter compares energy input to useful output."@en ;
+    rdfs:subClassOf :EnergyEfficiencyRate .
+
+:EnergyEfficientTechnology a owl:Class ;
+    rdfs:comment "A technology that improves energy efficiency. Energy-efficient technologies reduce energy consumption per unit of output and contribute to carbon footprint reduction."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:EnergyIntensity a owl:Class ;
+    rdfs:comment "A parameter measuring energy intensity per unit of output. This parameter assesses energy efficiency at the activity level."@en ;
+    rdfs:subClassOf :EnergyEfficiencyRate .
+
+:EnvironmentalManagementSystem a owl:Class ;
+    rdfs:comment "An environmental management system as a best practice. This includes standards such as ISO 14001 that provide frameworks for managing environmental performance."@en ;
+    rdfs:subClassOf :Systematic .
+
+:FuelConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of fuel consumption as a carbon footprint indicator. This parameter assesses fuel usage and associated emissions."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:GreenKnowledgeWorker a owl:Class ;
+    rdfs:comment "A person who has prepared at least three GreenKnowledge assets. This inferred class is derived automatically by the reasoner. GreenKnowledgeWorkers are key individuals in the organisation's green knowledge ecosystem."@en ;
+    rdfs:subClassOf :Person ;
+    owl:equivalentClass [ owl:intersectionOf ( :Person [ a owl:Restriction ;
+                        owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                        owl:onClass :GreenKnowledge ;
+                        owl:onProperty :prepares ] ) ] .
+
+:GreenhouseGasEmission a owl:Class ;
+    rdfs:comment "A parameter for assessing greenhouse gas emissions. This parameter measures direct and indirect emissions of greenhouse gases."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:HighRiskGreenKB a owl:Class ;
+    rdfs:comment "A HighRiskKB that additionally has a green importance rate ≥ 8. This inferred class is derived automatically by the reasoner. HighRiskGreenKB identifies knowledge assets that are both high-risk and critically important for green management."@en ;
+    rdfs:subClassOf :KnowledgeAsset ;
+    owl:equivalentClass [ owl:intersectionOf ( :HighRiskKB [ a owl:Restriction ;
+                        owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasGreenImportancyRate ] ) ] .
+
+:HumanFinancialResourceUnit a owl:Class ;
+    rdfs:comment "An organisational unit responsible for managing human and financial resources. This unit oversees staffing, budgeting, and resource allocation."@en ;
+    rdfs:subClassOf :OrganizationalUnit .
+
+:InstructionProcedure a owl:Class ;
+    rdfs:comment "A documented procedure or instruction guiding organisational activities. Instruction procedures operationalise best practices and provide step-by-step guidance for processes."@en ;
+    rdfs:subClassOf :Documentation .
+
+:IntegratedTransactionalSystem a owl:Class ;
+    rdfs:comment "An integrated transactional system. These systems support business transactions and integrate multiple business functions."@en ;
+    rdfs:subClassOf :InformationSystem .
+
+:IntelligentAndExpertSystem a owl:Class ;
+    rdfs:comment "An intelligent and expert system. These systems incorporate artificial intelligence and expert knowledge for decision support."@en ;
+    rdfs:subClassOf :InformationSystem .
+
+:KBCodificationStrategy a owl:Class ;
+    rdfs:comment "A knowledge asset recommended for codification strategy: core or advanced knowledge (competitive rate ≤ 5), low codification (≤ 4), high knowledge type diversity (≥ 6), and not organisation-specific (knowledge location ≠ 1). This inferred class provides automated strategy recommendations for knowledge management."@en ;
+    rdfs:subClassOf :KnowledgeAsset ;
+    owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset [ a owl:Class ;
+                        owl:complementOf [ a owl:Restriction ;
+                                owl:hasValue 1 ;
+                                owl:onProperty :hasKnowledgeLocation ] ] [ a owl:Restriction ;
+                        owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasKnowledgeType ] [ a owl:Restriction ;
+                        owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasCodificationRate ] [ a owl:Restriction ;
+                        owl:maxQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasCompetetiveRate ] ) ] .
+
+:KBPersonalizationStrategy a owl:Class ;
+    rdfs:comment "A knowledge asset recommended for personalisation strategy: organisation-specific (location = 1), fully codified (10), and innovative (competitive rate = 10). This inferred class provides automated strategy recommendations for knowledge management."@en ;
+    rdfs:subClassOf :KnowledgeAsset ;
+    owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset [ a owl:Restriction ;
+                        owl:hasValue 10 ;
+                        owl:onProperty :hasCodificationRate ] [ a owl:Restriction ;
+                        owl:hasValue 1 ;
+                        owl:onProperty :hasKnowledgeLocation ] ) ] .
+
+:LessonLearned a owl:Class ;
+    rdfs:comment "A lessons learned document as a recorded knowledge resource. These documents capture experiential knowledge from projects and processes."@en ;
+    rdfs:subClassOf :Record .
+
+:LifeCycleAssessment a owl:Class ;
+    rdfs:comment "A parameter for life cycle assessment. This parameter evaluates environmental impacts across the entire life cycle of products or services."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:LogSheet a owl:Class ;
+    rdfs:comment "A log sheet as a recorded knowledge resource. Log sheets document ongoing activities, observations, and measurements."@en ;
+    rdfs:subClassOf :Record .
+
+:ManagementReviewReport a owl:Class ;
+    rdfs:comment "A management review report as a knowledge resource. These reports document strategic reviews and governance decisions."@en ;
+    rdfs:subClassOf :Report .
+
+:ManagerialUnit a owl:Class ;
+    rdfs:comment "An organisational unit responsible for managerial and administrative functions. This unit coordinates activities and oversees operations."@en ;
+    rdfs:subClassOf :OrganizationalUnit .
+
+:MapVisualDoc a owl:Class ;
+    rdfs:comment "A visual map, diagram, or chart as a knowledge resource. Visual documentation supports spatial understanding and knowledge visualisation."@en ;
+    rdfs:subClassOf :Documentation .
+
+:MaterialConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of material consumption as a carbon footprint indicator. This parameter assesses material usage and associated environmental impacts."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:MaterialEfficiency a owl:Class ;
+    rdfs:comment "A parameter measuring material efficiency. This parameter assesses the effective use of materials in production processes."@en ;
+    rdfs:subClassOf :ResourceConservationRate .
+
+:MaterialSelectionAndLifecycleAnalysis a owl:Class ;
+    rdfs:comment "A technology supporting material selection and life cycle analysis. These technologies enable informed decisions about material choices and their environmental impacts."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:NaturalGasConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of natural gas consumption as a carbon footprint indicator. This parameter assesses natural gas usage and associated emissions."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:NonGreenTechProject a owl:Class ;
+    rdfs:comment "A project that does not apply any GreenTechnology. This inferred class is derived automatically by the reasoner. NonGreenTechProjects may still have sustainability relevance through other mechanisms."@en ;
+    rdfs:subClassOf :Project ;
+    owl:equivalentClass [ owl:intersectionOf ( :Project [ a owl:Class ;
+                        owl:complementOf [ a owl:Restriction ;
+                                owl:onProperty :hasApplied ;
+                                owl:someValuesFrom :GreenTechnology ] ] ) ] .
+
+:OilConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of oil consumption as a carbon footprint indicator. This parameter assesses oil usage and associated emissions."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:PaperConsumptionMeasurement a owl:Class ;
+    rdfs:comment "A measurement of paper consumption as a carbon footprint indicator. This parameter assesses paper usage and associated environmental impacts."@en ;
+    rdfs:subClassOf :CarbonFootprintParameter .
+
+:ProjectProfile a owl:Class ;
+    rdfs:comment "A project profile document as a recorded knowledge resource. Project profiles summarise project objectives, scope, and outcomes."@en ;
+    rdfs:subClassOf :Record .
+
+:RecyclingMethod a owl:Class ;
+    rdfs:comment "A technology for recycling materials. Note: Processual recycling methods (e.g., pyrolysis, gasification) are identified for future refinement as processual technologies."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:RenewableEnergySource a owl:Class ;
+    rdfs:comment "A technology that harnesses renewable energy sources such as solar, wind, geothermal, or biomass. These technologies reduce dependence on fossil fuels."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:Session a owl:Class ;
+    rdfs:comment "A session note or minutes as a recorded knowledge resource. Session notes document meetings, workshops, and collaborative activities."@en ;
+    rdfs:subClassOf :Record .
+
+:SustainableProcurementPolicy a owl:Class ;
+    rdfs:comment "A policy or regulation concerning sustainable procurement and supply-chain sustainability. Sustainable procurement policies integrate environmental criteria into purchasing decisions."@en ;
+    rdfs:subClassOf :PolicyAndRegulation .
+
+:SustainableTransportationOption a owl:Class ;
+    rdfs:comment "A technology for sustainable transportation, including electric vehicles, hybrid vehicles, and intelligent transportation systems."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:Technical a owl:Class ;
+    rdfs:comment "A technical best practice. Technical practices provide specific methodologies for technical activities."@en ;
+    rdfs:subClassOf :BestPractice .
+
+:TechnologyDevelopmentUnit a owl:Class ;
+    rdfs:comment "An organisational unit responsible for research, development, and innovation in technology. This unit drives the development of new green technologies."@en ;
+    rdfs:subClassOf :OrganizationalUnit .
+
+:TechnologySupportUnit a owl:Class ;
+    rdfs:comment "An organisational unit responsible for providing technical support and maintenance. This unit ensures the operational effectiveness of technologies."@en ;
+    rdfs:subClassOf :OrganizationalUnit .
+
+:TimeAndBudgetPlan a owl:Class ;
+    rdfs:comment "A time and budget plan as a knowledge resource. These plans document resource allocation and scheduling for projects."@en ;
+    rdfs:subClassOf :Report .
+
+:TrainingAttendance a owl:Class ;
+    rdfs:comment "A training attendance record. These records document participation in training and development activities."@en ;
+    rdfs:subClassOf :Record .
+
+:WasteManagementPolicy a owl:Class ;
+    rdfs:comment "A policy or regulation concerning waste management, recycling, and circular economy. Waste management policies promote waste reduction and resource recovery."@en ;
+    rdfs:subClassOf :PolicyAndRegulation .
+
+:WasteReduction a owl:Class ;
+    rdfs:comment "A technology that reduces waste generation or enables waste valorisation. These technologies support circular economy principles."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:WaterConservationTechnique a owl:Class ;
+    rdfs:comment "A technology that conserves water resources through efficient use, recycling, or alternative sourcing."@en ;
+    rdfs:subClassOf :GreenTechnology .
+
+:WaterEfficiency a owl:Class ;
+    rdfs:comment "A parameter measuring water efficiency. This parameter assesses the effective use of water resources."@en ;
+    rdfs:subClassOf :ResourceConservationRate .
+
+:assignTo a owl:ObjectProperty ;
+    rdfs:comment "Links a UnitMember to the OrganizationalUnit to which they are assigned. This property captures the organisational role of individuals within the workforce structure."@en ;
+    rdfs:domain :UnitMember ;
+    rdfs:range :OrganizationalUnit ;
+    rdfs:subPropertyOf gufo:isCollectionMemberOf ;
+    owl:inverseOf :hasWorkForce .
+
+:drives a owl:ObjectProperty ;
+    rdfs:comment "Indicates that a PolicyAndRegulation mandates, encourages, or drives the adoption of a BestPractice or GreenTechnology. This property captures the regulatory influence on sustainability initiatives."@en ;
+    rdfs:domain :PolicyAndRegulation ;
+    rdfs:range :BestPractice,
+        :GreenTechnology ;
+    owl:inverseOf :isDrivedFrom .
+
+:evaluatedBy a owl:ObjectProperty ;
+    rdfs:comment "Links a GreenTechnology to the EvaluationParameter that measures its sustainability impact. This property enables the assessment of technologies against standardised sustainability criteria."@en ;
+    rdfs:domain :GreenTechnology ;
+    rdfs:range :EvaluationParameter ;
+    owl:inverseOf :reportedFor .
+
+:hasDoneBy a owl:ObjectProperty ;
+    rdfs:comment "Links a Project to the Person who performed or executed it. This property captures the human agency involved in project execution."@en ;
+    rdfs:domain :Project ;
+    rdfs:range :Person ;
+    owl:inverseOf :isInvolvedIn .
+
+:hasID a owl:DatatypeProperty ;
+    rdfs:comment "A unique identifier for an entity within the knowledge base. This property provides a consistent reference for all individuals."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range rdfs:Literal ;
+    rdfs:subPropertyOf :demographic .
+
+:hasKnowledge a owl:ObjectProperty ;
+    rdfs:comment "Links a Project to the KnowledgeAsset it produced or utilised. This property connects project activities to their knowledge outputs."@en ;
+    rdfs:domain :Project ;
+    rdfs:range :KnowledgeAsset ;
+    owl:inverseOf :isCompletedFor .
+
+:hasName a owl:DatatypeProperty ;
+    rdfs:comment "The name of a Person. This property captures the identity of knowledge workers."@en ;
+    rdfs:domain :Person ;
+    rdfs:range rdfs:Literal ;
+    rdfs:subPropertyOf :demographic .
+
+:hasScopeArea a owl:DatatypeProperty ;
+    rdfs:comment "The scope area of a PolicyAndRegulation. This property describes the domain or sector to which a policy applies."@en ;
+    rdfs:domain :PolicyAndRegulation ;
+    rdfs:range rdfs:Literal .
+
+:hasTitle a owl:DatatypeProperty ;
+    rdfs:comment "The title or name of an entity. This property provides a human-readable label for individuals."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range rdfs:Literal ;
+    rdfs:subPropertyOf :demographic .
+
+:hasTransparencyRate a owl:DatatypeProperty ;
+    rdfs:comment "The rate of knowledge transparency on a scale from 1 to 10, where 1 represents concealed, difficult-to-access knowledge and 10 represents transparent, readily accessible knowledge. This property operationalises the concealment-transparency dimension of the C3EEP typology."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :typology .
+
+:hasYearOfCreate a owl:DatatypeProperty ;
+    rdfs:comment "The year when a KnowledgeAsset was created. This property captures the temporal dimension of knowledge production."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:gYear ;
+    rdfs:subPropertyOf :demographic .
+
+:hasYearOfNeed a owl:DatatypeProperty ;
+    rdfs:comment "The year when a KnowledgeAsset becomes needed or relevant. This property supports knowledge planning and anticipation of future requirements."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:gYear ;
+    rdfs:subPropertyOf :demographic .
+
+:isMemberOf a owl:ObjectProperty ;
+    rdfs:comment "Links a UnitMember to the GroupMember they belong to, as a specialised form of collection membership restricted to organisational and group participation contexts."@en ;
+    rdfs:domain :UnitMember ;
+    rdfs:range :GroupMember ;
+    rdfs:subPropertyOf gufo:isCollectionMemberOf .
+
+:isPreparedBy a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :prepares. Indicates that a KnowledgeAsset was prepared or authored by a Person. This property captures knowledge ownership and expertise."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range :Person ;
+    owl:inverseOf :prepares .
+
+:isResponsibleOf a owl:ObjectProperty ;
+    rdfs:comment "Indicates that a UnitMember holds responsibility for a Project. This property captures accountability relationships."@en ;
+    rdfs:domain :UnitMember ;
+    rdfs:range :Project .
+
+:isResultOf a owl:ObjectProperty ;
+    rdfs:comment "Links a KnowledgeAsset to the Process that produced it. This property grounds knowledge assets in organisational activities and follows the process-oriented view of knowledge creation."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range :Process ;
+    rdfs:subPropertyOf gufo:historicallyDependsOn ;
+    owl:inverseOf :requestedFor .
+
+:isUsedIn a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :uses. Indicates that a BestPractice is applied in a Project."@en ;
+    rdfs:domain :BestPractice ;
+    rdfs:range :Project ;
+    owl:inverseOf :uses .
+
+:reportedIn a owl:ObjectProperty ;
+    rdfs:comment "Indicates that an EvaluationParameter measurement or assessment is documented in a KnowledgeAsset."@en ;
+    rdfs:domain :EvaluationParameter ;
+    rdfs:range :KnowledgeAsset .
+
+gufo:VariableCollection a owl:Class ;
+    rdfs:comment "A class representing collections whose membership can change over time. This class supports the modelling of organisational units and work groups."@en .
+
+gufo:historicallyDependsOn a owl:ObjectProperty ;
+    rdfs:comment "A relation indicating that one entity historically depends on another for its existence or characteristics. This property is used to ground knowledge assets in the processes that produced them."@en .
+
+:GreenKnowledge a owl:Class ;
+    rdfs:comment "A knowledge asset completed for a GreenTechProject. This inferred class is derived automatically by the reasoner. GreenKnowledge represents knowledge that is directly relevant to green technology projects and sustainability initiatives."@en ;
+    rdfs:subClassOf :KnowledgeAsset ;
+    owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset [ a owl:Restriction ;
+                        owl:onProperty :isCompletedFor ;
+                        owl:someValuesFrom :GreenTechProject ] ) ] .
+
+:GreenTechProject a owl:Class ;
+    rdfs:comment "A project that applies at least one GreenTechnology. This inferred class is derived automatically by the reasoner based on the :hasApplied property. GreenTechProjects represent the operational integration of sustainability technologies into organisational initiatives."@en ;
+    rdfs:subClassOf :Project ;
+    owl:equivalentClass [ owl:intersectionOf ( :Project [ a owl:Restriction ;
+                        owl:onProperty :hasApplied ;
+                        owl:someValuesFrom :GreenTechnology ] ) ] .
+
+:GroupMember a owl:Class ;
+    rdfs:comment "A person acting as a member of a group or community of practice. This class captures participation in informal or formal groups beyond formal organisational units."@en ;
+    rdfs:subClassOf :Person .
+
+:HighRiskKB a owl:Class ;
+    rdfs:comment "A knowledge asset that simultaneously meets four risk criteria: cost rate ≥ 8, difficulty rate ≥ 8, strategic importance rate ≥ 8, and codification rate ≤ 4. This inferred class is derived automatically by the reasoner. HighRiskKB identifies knowledge assets requiring urgent attention for preservation and transfer."@en ;
+    rdfs:subClassOf :KnowledgeAsset ;
+    owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset [ a owl:Restriction ;
+                        owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasCostRate ] [ a owl:Restriction ;
+                        owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasDifficultyRate ] [ a owl:Restriction ;
+                        owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasStrategicImportancyRate ] [ a owl:Restriction ;
+                        owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int ;
+                        owl:onProperty :hasCodificationRate ] ) ] .
+
+:ProcessCore a owl:Class ;
+    rdfs:comment "A core organisational process that directly contributes to the organisation's primary value creation activities. Core processes are essential for delivering products or services and are central to organisational performance."@en ;
+    rdfs:subClassOf :Process .
+
+:ProcessInspective a owl:Class ;
+    rdfs:comment "An inspective or monitoring process that reviews, audits, and evaluates organisational activities. Inspective processes ensure compliance, quality, and continuous improvement."@en ;
+    rdfs:subClassOf :Process .
+
+:ProcessManagerialAndPlanning a owl:Class ;
+    rdfs:comment "A managerial and planning process that sets direction, coordinates activities, and allocates resources. These processes ensure alignment between organisational strategy and operational execution."@en ;
+    rdfs:subClassOf :Process .
+
+:ProcessSupportive a owl:Class ;
+    rdfs:comment "A supportive process that enables or facilitates core organisational activities. Supportive processes include human resource management, procurement, and infrastructure services."@en ;
+    rdfs:subClassOf :Process .
+
+:Systematic a owl:Class ;
+    rdfs:comment "A systematic best practice, such as a management system standard. Systematic practices provide comprehensive frameworks for organisational management."@en ;
+    rdfs:subClassOf :BestPractice .
+
+:WasteGenerationRate a owl:Class ;
+    rdfs:comment "A parameter measuring waste generation rate. This parameter assesses the volume of waste produced."@en ;
+    rdfs:subClassOf :WasteReductionRate .
+
+:WasteRecyclingRate a owl:Class ;
+    rdfs:comment "A parameter measuring waste recycling rate. This parameter assesses the proportion of waste that is recycled."@en ;
+    rdfs:subClassOf :WasteReductionRate .
+
+:WasteToEnergyConservationRate a owl:Class ;
+    rdfs:comment "A parameter measuring waste-to-energy conservation rate. This parameter assesses the recovery of energy from waste streams."@en ;
+    rdfs:subClassOf :WasteReductionRate .
+
+:hasCompetetiveRate a owl:DatatypeProperty ;
+    rdfs:comment "The competitive position of knowledge: 1 = core knowledge (essential for operations), 5 = advanced knowledge (competitive advantage), 10 = innovative knowledge (market-leading). This property operationalises the competitive dimension of knowledge strategy."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :typology .
+
+:hasCostRate a owl:DatatypeProperty ;
+    rdfs:comment "The rate of knowledge cost on a scale from 1 to 10, where 1 represents low cost and 10 represents very high acquisition or replacement cost. This property supports knowledge risk assessment."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :risk .
+
+:hasDifficultyRate a owl:DatatypeProperty ;
+    rdfs:comment "The rate of knowledge acquisition difficulty on a scale from 1 to 10, where 1 represents simple, easy-to-acquire knowledge and 10 represents highly complex, difficult-to-acquire knowledge. This property supports knowledge risk assessment."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :risk .
+
+:hasGreenImportancyRate a owl:DatatypeProperty ;
+    rdfs:comment "The rate of green importance on a scale from 1 to 10, where 1 represents low relevance to green management and 10 represents critical importance for environmental sustainability. This property supports the identification of HighRiskGreenKB."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :risk .
+
+:hasKnowledgeType a owl:DatatypeProperty ;
+    rdfs:comment "The type of knowledge represented as the sum of five components (what, who, why, how, where). Each component scores either 0 (absent) or 2 (present), yielding a total between 0 and 10. This property operationalises the knowledge type dimensions of the C3EEP typology."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :typology .
+
+:hasStrategicImportancyRate a owl:DatatypeProperty ;
+    rdfs:comment "The rate of strategic importance on a scale from 1 to 10, where 1 represents low strategic relevance and 10 represents critical strategic importance. This property supports knowledge risk assessment and strategy formulation."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :risk .
+
+:hasWorkForce a owl:ObjectProperty ;
+    rdfs:comment "Links an OrganizationalUnit to its UnitMember workforce. This is the inverse of :assignTo and captures the composition of organisational units."@en ;
+    rdfs:domain :OrganizationalUnit ;
+    rdfs:range :UnitMember .
+
+:isAppliedIn a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :hasApplied. Indicates which Projects use a given GreenTechnology."@en ;
+    rdfs:domain :GreenTechnology ;
+    rdfs:range :Project .
+
+:isDrivedFrom a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :drives. Indicates that a GreenTechnology is derived from or influenced by a PolicyAndRegulation."@en ;
+    rdfs:domain :GreenTechnology ;
+    rdfs:range :PolicyAndRegulation .
+
+:isInvolvedIn a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :hasDoneBy. Indicates that a UnitMember is involved in a Project."@en ;
+    rdfs:domain :UnitMember ;
+    rdfs:range :Project .
+
+:reportedFor a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :evaluatedBy. Indicates that an EvaluationParameter reports on the performance of a GreenTechnology."@en ;
+    rdfs:domain :EvaluationParameter ;
+    rdfs:range :GreenTechnology .
+
+:requestedFor a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :isResultOf. Indicates that a Process requested or required the production of a KnowledgeAsset."@en ;
+    rdfs:domain :Process ;
+    rdfs:range :KnowledgeAsset .
+
+:uses a owl:ObjectProperty ;
+    rdfs:comment "Links a Project to the BestPractice it employs. This property captures the application of established practices in project activities."@en ;
+    rdfs:domain :Project ;
+    rdfs:range :BestPractice .
+
+sco-u:SCO_0000003 a owl:Class ;
+    rdfs:comment "SCO-U IndicatorValue class. Represents measurable values or criteria for assessing sustainability performance."@en .
+
+sco-u:SCO_0000015 a owl:Class ;
+    rdfs:comment "SCO-U ComplexSystem class. Represents systems composed of multiple interacting components."@en .
+
+sco-u:SCO_0000029 a owl:Class ;
+    rdfs:comment "SCO-U Agent class. Represents entities capable of intentional action, including persons and organisations."@en .
+
+gufo:Event a owl:Class ;
+    rdfs:comment "A class representing perdurants (events that unfold over time) in the gUFO foundational ontology. Events have temporal parts and involve change. This class provides the foundation for modelling processes and projects."@en .
+
+gufo:isCollectionMemberOf a owl:ObjectProperty ;
+    rdfs:comment "A relation indicating that an entity is a member of a collection. This property supports the modelling of organisational units as variable collections."@en .
+
+:ResourceConservationRate a owl:Class ;
+    rdfs:comment "A parameter for assessing resource conservation. This parameter measures the efficiency of resource use and conservation efforts."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:hasApplied a owl:ObjectProperty ;
+    rdfs:comment "Indicates which GreenTechnology a Project employs. This property is central to the classification of GreenTechProjects through automated reasoning."@en ;
+    rdfs:domain :Project ;
+    rdfs:range :GreenTechnology ;
+    owl:inverseOf :isAppliedIn .
+
+:hasKnowledgeLocation a owl:DatatypeProperty ;
+    rdfs:comment "The spatial location of knowledge: 1 = local or organisation-specific, 5 = national level, 10 = international or global level. This property captures the geographic reach and applicability of knowledge."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :typology .
+
+:isCompletedFor a owl:ObjectProperty ;
+    rdfs:comment "Inverse of :hasKnowledge. Indicates that a KnowledgeAsset was completed for a specific Project. This property is used to classify GreenKnowledge."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range :Project .
+
+:knowledgeAssessment a owl:DatatypeProperty ;
+    rdfs:comment "Knowledge assessment properties encompassing typology and risk dimensions. These properties characterise knowledge assets along multiple analytical dimensions derived from the knowledge management literature."@en .
+
+:prepares a owl:ObjectProperty ;
+    rdfs:comment "Links a Person to the KnowledgeAsset they prepared or authored. This property captures the relationship between knowledge workers and their knowledge outputs."@en ;
+    rdfs:domain :Person ;
+    rdfs:range :KnowledgeAsset .
+
+sco-u:SCO_0000001 a owl:Class ;
+    rdfs:comment "SCO-U Interaction class. Represents interactions between system components, providing a middle-level category for process modelling."@en .
+
+:InformationSystem a owl:Class ;
+    rdfs:comment "An information system as a knowledge resource. Information systems provide infrastructure for knowledge storage, retrieval, and dissemination."@en ;
+    rdfs:subClassOf :KnowledgeAsset .
+
+:Report a owl:Class ;
+    rdfs:comment "A formal report as a knowledge resource. Reports document findings, assessments, and analyses of organisational activities."@en ;
+    rdfs:subClassOf :Documentation .
+
+:SocialResponsibilityParameter a owl:Class ;
+    rdfs:comment "A parameter for assessing social responsibility. This parameter addresses the social dimension of the Triple Bottom Line."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:WasteReductionRate a owl:Class ;
+    rdfs:comment "A parameter for assessing waste reduction. This parameter measures the effectiveness of waste reduction efforts."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:hasCodificationRate a owl:DatatypeProperty ;
+    rdfs:comment "The rate of codification of knowledge on a scale from 1 to 10, where 1 represents highly tacit, uncodified knowledge and 10 represents fully codified, documented knowledge. This property operationalises the codification-tacitness dimension of the C3EEP typology."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:range xsd:int ;
+    rdfs:subPropertyOf :typology .
+
+sco-u:SCO_0000013 a owl:Class ;
+    rdfs:comment "SCO-U SystemComponent class. Represents components that form part of a system, including physical and abstract elements."@en .
+
+:Documentation a owl:Class ;
+    rdfs:comment "Documented knowledge resources including books, reports, instruction procedures, and visual maps. Documentation represents formal, structured knowledge that has been codified for sharing and reuse."@en ;
+    rdfs:subClassOf :KnowledgeAsset .
+
+:EnergyEfficiencyRate a owl:Class ;
+    rdfs:comment "A parameter for assessing energy efficiency. Energy efficiency rates measure the relationship between energy input and useful output."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:risk a owl:DatatypeProperty ;
+    rdfs:comment "Risk properties assessing knowledge risk factors including acquisition difficulty, strategic importance, cost, and green importance. These properties support knowledge risk assessment and the identification of high-risk knowledge assets."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:subPropertyOf :knowledgeAssessment .
+
+gufo:Object a owl:Class ;
+    rdfs:comment "A class representing endurants (objects that exist wholly at each point in time) in the gUFO foundational ontology. Objects maintain their identity over time and have no temporal parts."@en .
+
+:BestPractice a owl:Class ;
+    rdfs:comment "A documented method, procedure, or practice that has been proven effective for achieving a specific outcome. Best practices represent established approaches to organisational activities. They are represented as endurants in the current version, capturing their status as documented knowledge assets."@en ;
+    rdfs:subClassOf gufo:Object,
+        sco-u:SCO_0000013 .
+
+:UnitMember a gufo:Role,
+        owl:Class ;
+    rdfs:comment "A person acting in an organisational role as a member of an organisational unit. This class represents the role semantics of a person within the organisation, capturing their formal position and responsibilities. The role semantics align with the UFO treatment of roles as relational properties."@en ;
+    rdfs:subClassOf :Person .
+
+:demographic a owl:DatatypeProperty ;
+    rdfs:comment "Demographic characteristics including identifier, title, name, and temporal metadata. These properties provide basic descriptive information about entities."@en .
+
+:typology a owl:DatatypeProperty ;
+    rdfs:comment "Typology properties characterising knowledge structure, type, competitive position, and location. These properties operationalise the C3EEP typology (Codification, Complementarity, Concealment, Exploration, External/Internal, Process/Product) for knowledge characterisation."@en ;
+    rdfs:domain :KnowledgeAsset ;
+    rdfs:subPropertyOf :knowledgeAssessment .
+
+:OrganizationalUnit a owl:Class ;
+    rdfs:comment "A collection of people and resources organised for a specific purpose within the organisation. Organisational units are variable collections whose membership can change over time. They serve as containers for workforce management and responsibility assignment."@en ;
+    rdfs:subClassOf gufo:VariableCollection,
+        sco-u:SCO_0000015 .
+
+:Process a owl:Class ;
+    rdfs:comment "An organisational activity that unfolds over time, has temporal parts, and involves change. Processes are modelled as subclasses of gufo:Event following the UFO perdurant/endurant distinction. This class represents the actual unfolding of activities, not their descriptions or plans. Processes both generate and consume knowledge at different stages, capturing the process-oriented view of knowledge creation and sharing."@en ;
+    rdfs:subClassOf gufo:Event,
+        sco-u:SCO_0000001 .
+
+:CarbonFootprintParameter a owl:Class ;
+    rdfs:comment "A parameter for assessing carbon footprint. Carbon footprint parameters measure the greenhouse gas emissions associated with organisational activities."@en ;
+    rdfs:subClassOf :EvaluationParameter .
+
+:PolicyAndRegulation a owl:Class ;
+    rdfs:comment "An officially adopted rule, standard, or directive that guides organisational behaviour. Policies and regulations influence the adoption of green technologies and best practices. They are represented as endurants in the current version."@en ;
+    rdfs:subClassOf gufo:Object,
+        sco-u:SCO_0000013 .
+
+:Record a owl:Class ;
+    rdfs:comment "A recorded knowledge resource including contracts, log sheets, project profiles, session notes, lessons learned, and training records. Records capture experiential knowledge and serve as evidence of organisational activities."@en ;
+    rdfs:subClassOf :KnowledgeAsset .
+
+:Person a owl:Class ;
+    rdfs:comment "An individual human being who acts as an agent within the organisation. Persons are endurants with independent identity. They serve as knowledge workers, managers, and experts. This class follows the UFO foundational distinction between endurants and roles."@en ;
+    rdfs:subClassOf gufo:Object,
+        sco-u:SCO_0000029 .
+
+:EvaluationParameter a owl:Class ;
+    rdfs:comment "A defined criterion or variable used to assess sustainability performance. This class represents the parameter concept itself (e.g., 'Carbon Footprint'), not the measured value. The measurement value is captured through data properties or separate indicator value instances. Evaluation parameters operationalise the Triple Bottom Line framework across environmental, social, and economic dimensions."@en ;
+    rdfs:subClassOf sco-u:SCO_0000003 .
+
+:Project a owl:Class ;
+    rdfs:comment "A time-bounded undertaking with a defined start and end, unfolding through a sequence of activities. Projects are modelled as gufo:Event subclasses because they are occurrents with temporal parts. This follows the UFO treatment of plans versus their execution, distinguishing between the project description (a plan) and the project itself (the actual undertaking)."@en ;
+    rdfs:subClassOf gufo:Event,
+        sco-u:SCO_0000001 .
+
+:GreenTechnology a owl:Class ;
+    rdfs:comment "A tangible technology or device that contributes to environmental sustainability. This class encompasses physical technologies and devices such as energy management systems, renewable energy sources, and waste reduction technologies. Processual technologies (e.g., pyrolysis, gasification) are noted as a modelling boundary; while currently classified under this class for pragmatic reasons, they are identified for future refinement as instances of a dedicated :GreenProcess class."@en ;
+    rdfs:subClassOf gufo:Object,
+        sco-u:SCO_0000013 .
+
+:KnowledgeAsset a owl:Class ;
+    rdfs:comment "A knowledge resource produced, used, or maintained within the organisation, including documentation, records, and information systems. This class represents the knowledge resource as an endurant object. Knowledge assets embody the codified and recorded knowledge of the organisation and serve as the foundation for knowledge management activities."@en ;
+    rdfs:subClassOf gufo:Object .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :ProcessCore :ProcessInspective :ProcessManagerialAndPlanning :ProcessSupportive ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :WasteGenerationRate :WasteRecyclingRate :WasteToEnergyConservationRate ) .
+
