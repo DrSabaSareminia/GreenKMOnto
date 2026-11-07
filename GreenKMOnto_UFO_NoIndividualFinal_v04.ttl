@@ -1,0 +1,1284 @@
+@prefix : <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sco-u: <https://www.w3id.org/sco/sco-u#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#> .
+
+<http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto> rdf:type owl:Ontology ;
+                                                                 owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
+                                                                             <https://www.w3id.org/sco/sco-u> ;
+                                                                 dcterms:created "2023-10"^^xsd:gYearMonth ;
+                                                                 dcterms:creator """Saba Sareminia, Isfahan University of Technology,
+https://orcid.org/0000-0002-8300-7288""" ;
+                                                                 dcterms:description "GreenKMOnto: A Green Knowledge Management Ontology. This ontology integrates Triple Bottom Line sustainability principles with organisational knowledge management. The ontology comprises five core modules: Best Practices, Green Technologies, Policies and Regulations, Evaluation Parameters, and Knowledge Assets. These modules are interconnected through object properties that capture the relationships between sustainability initiatives, organisational processes, projects, and knowledge resources. The ontology supports automated reasoning for knowledge risk assessment, green knowledge classification, and strategy inference through defined equivalent classes. The ontology is distributed as a schema-only (TBox) artefact without individuals. It is grounded in gUFO and reuses SCO-U as a middle-level sustainability ontology."@en ;
+                                                                 dcterms:language "en" ;
+                                                                 dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                                                 dcterms:modified "2026-11-07"^^xsd:date ;
+                                                                 dcterms:rights "Copyright 2026 Saba Sareminia. Released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0)."@en ;
+                                                                 dcterms:source <https://github.com/DrSabaSareminia/GreenKMOnto> ;
+                                                                 dcterms:subject "Green technologies"@en ,
+                                                                                 "Ontology engineering"@en ,
+                                                                                 "Organisational knowledge management"@en ,
+                                                                                 "Triple Bottom Line sustainability"@en ;
+                                                                 dcterms:title "GreenKMOnto: An Extensible Ontology Bridging Triple Bottom Line Sustainability and Organisational Knowledge Management"@en ;
+                                                                 rdfs:comment "GreenKMOnto: A Green Knowledge Management Ontology. This ontology integrates Triple Bottom Line sustainability principles with organisational knowledge management. The ontology comprises five core modules: Best Practices, Green Technologies, Policies and Regulations, Evaluation Parameters, and Knowledge Assets. These modules are interconnected through object properties that capture the relationships between sustainability initiatives, organisational processes, projects, and knowledge resources. The ontology supports automated reasoning for knowledge risk assessment, green knowledge classification, and strategy inference through defined equivalent classes."@en ;
+                                                                 rdfs:label "GreenKMOnto: Green Knowledge Management Ontology"@en ;
+                                                                 rdfs:seeAlso <http://purl.org/nemo/gufo> ,
+                                                                              <https://github.com/DrSabaSareminia/GreenKMOnto> ,
+                                                                              <https://www.w3id.org/sco/sco-u> ;
+                                                                 owl:versionInfo "2.2" ;
+                                                                 skos:note "Foundational grounding: gUFO (Gentle UFO). Middle-level grounding: SCO-U. Modelling decisions that deviate from a strict foundational treatment are documented in the accompanying article."@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/language
+dcterms:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/rights
+dcterms:rights rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/subject
+dcterms:subject rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+skos:note rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gYear
+xsd:gYear rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gYearMonth
+xsd:gYearMonth rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/nemo/gufo#historicallyDependsOn
+gufo:historicallyDependsOn rdf:type owl:ObjectProperty ;
+                           rdfs:comment "A relation indicating that one entity historically depends on another for its existence or characteristics. This property is used to ground knowledge assets in the processes that produced them."@en ;
+                           rdfs:label "historically depends on"@en .
+
+
+###  http://purl.org/nemo/gufo#isCollectionMemberOf
+gufo:isCollectionMemberOf rdf:type owl:ObjectProperty ;
+                          rdfs:comment "A relation indicating that an entity is a member of a collection. This property supports the modelling of organisational units as variable collections."@en ;
+                          rdfs:label "is collection member of"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#assignTo
+:assignTo rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf gufo:isCollectionMemberOf ;
+          owl:inverseOf :hasWorkForce ;
+          rdfs:domain :UnitMember ;
+          rdfs:range :OrganizationalUnit ;
+          rdfs:comment "Links a UnitMember to the OrganizationalUnit to which they are assigned. This property captures the organisational role of individuals within the workforce structure."@en ;
+          rdfs:label "assign to"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#drives
+:drives rdf:type owl:ObjectProperty ;
+        owl:inverseOf :isDrivedFrom ;
+        rdfs:domain :PolicyAndRegulation ;
+        rdfs:range :BestPractice ,
+                   :GreenTechnology ;
+        rdfs:comment "Indicates that a PolicyAndRegulation mandates, encourages, or drives the adoption of a BestPractice or GreenTechnology. This property captures the regulatory influence on sustainability initiatives."@en ;
+        rdfs:label "drives"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#evaluatedBy
+:evaluatedBy rdf:type owl:ObjectProperty ;
+             owl:inverseOf :reportedFor ;
+             rdfs:domain :GreenTechnology ;
+             rdfs:range :EvaluationParameter ;
+             rdfs:comment "Links a GreenTechnology to the EvaluationParameter that measures its sustainability impact. This property enables the assessment of technologies against standardised sustainability criteria."@en ;
+             rdfs:label "evaluated by"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasApplied
+:hasApplied rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isAppliedIn ;
+            rdfs:domain :Project ;
+            rdfs:range :GreenTechnology ;
+            rdfs:comment "Indicates which GreenTechnology a Project employs. This property is central to the classification of GreenTechProjects through automated reasoning."@en ;
+            rdfs:label "has applied"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasDoneBy
+:hasDoneBy rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isInvolvedIn ;
+           rdfs:domain :Project ;
+           rdfs:range :Person ;
+           rdfs:comment "Links a Project to the Person who performed or executed it. This property captures the human agency involved in project execution."@en ;
+           rdfs:label "has done by"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasKnowledge
+:hasKnowledge rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isCompletedFor ;
+              rdfs:domain :Project ;
+              rdfs:range :KnowledgeAsset ;
+              rdfs:comment "Links a Project to the KnowledgeAsset it produced or utilised. This property connects project activities to their knowledge outputs."@en ;
+              rdfs:label "has knowledge"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasWorkForce
+:hasWorkForce rdf:type owl:ObjectProperty ;
+              rdfs:domain :OrganizationalUnit ;
+              rdfs:range :UnitMember ;
+              rdfs:comment "Links an OrganizationalUnit to its UnitMember workforce. This is the inverse of :assignTo and captures the composition of organisational units."@en ;
+              rdfs:label "has work force"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isAppliedIn
+:isAppliedIn rdf:type owl:ObjectProperty ;
+             rdfs:domain :GreenTechnology ;
+             rdfs:range :Project ;
+             rdfs:comment "Inverse of :hasApplied. Indicates which Projects use a given GreenTechnology."@en ;
+             rdfs:label "is applied in"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isCompletedFor
+:isCompletedFor rdf:type owl:ObjectProperty ;
+                rdfs:domain :KnowledgeAsset ;
+                rdfs:range :Project ;
+                rdfs:comment "Inverse of :hasKnowledge. Indicates that a KnowledgeAsset was completed for a specific Project. This property is used to classify GreenKnowledge."@en ;
+                rdfs:label "is completed for"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isDrivedFrom
+:isDrivedFrom rdf:type owl:ObjectProperty ;
+              rdfs:domain :GreenTechnology ;
+              rdfs:range :PolicyAndRegulation ;
+              rdfs:comment "Inverse of :drives. Indicates that a GreenTechnology is derived from or influenced by a PolicyAndRegulation."@en ;
+              rdfs:label "is derived from"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isInvolvedIn
+:isInvolvedIn rdf:type owl:ObjectProperty ;
+              rdfs:domain :UnitMember ;
+              rdfs:range :Project ;
+              rdfs:comment "Inverse of :hasDoneBy. Indicates that a UnitMember is involved in a Project."@en ;
+              rdfs:label "is involved in"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isMemberOf
+:isMemberOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf gufo:isCollectionMemberOf ;
+            rdfs:domain :UnitMember ;
+            rdfs:range :GroupMember ;
+            rdfs:comment "Links a UnitMember to the GroupMember they belong to, as a specialised form of collection membership restricted to organisational and group participation contexts."@en ;
+            rdfs:label "is member of"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isPreparedBy
+:isPreparedBy rdf:type owl:ObjectProperty ;
+              owl:inverseOf :prepares ;
+              rdfs:domain :KnowledgeAsset ;
+              rdfs:range :Person ;
+              rdfs:comment "Inverse of :prepares. Indicates that a KnowledgeAsset was prepared or authored by a Person. This property captures knowledge ownership and expertise."@en ;
+              rdfs:label "is prepared by"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isResponsibleOf
+:isResponsibleOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :UnitMember ;
+                 rdfs:range :Project ;
+                 rdfs:comment "Indicates that a UnitMember holds responsibility for a Project. This property captures accountability relationships."@en ;
+                 rdfs:label "is responsible of"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isResultOf
+:isResultOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf gufo:historicallyDependsOn ;
+            owl:inverseOf :requestedFor ;
+            rdfs:domain :KnowledgeAsset ;
+            rdfs:range :Process ;
+            rdfs:comment "Links a KnowledgeAsset to the Process that produced it. This property grounds knowledge assets in organisational activities and follows the process-oriented view of knowledge creation."@en ;
+            rdfs:label "is result of"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#isUsedIn
+:isUsedIn rdf:type owl:ObjectProperty ;
+          owl:inverseOf :uses ;
+          rdfs:domain :BestPractice ;
+          rdfs:range :Project ;
+          rdfs:comment "Inverse of :uses. Indicates that a BestPractice is applied in a Project."@en ;
+          rdfs:label "is used in"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#prepares
+:prepares rdf:type owl:ObjectProperty ;
+          rdfs:domain :Person ;
+          rdfs:range :KnowledgeAsset ;
+          rdfs:comment "Links a Person to the KnowledgeAsset they prepared or authored. This property captures the relationship between knowledge workers and their knowledge outputs."@en ;
+          rdfs:label "prepares"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#reportedFor
+:reportedFor rdf:type owl:ObjectProperty ;
+             rdfs:domain :EvaluationParameter ;
+             rdfs:range :GreenTechnology ;
+             rdfs:comment "Inverse of :evaluatedBy. Indicates that an EvaluationParameter reports on the performance of a GreenTechnology."@en ;
+             rdfs:label "reported for"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#reportedIn
+:reportedIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :EvaluationParameter ;
+            rdfs:range :KnowledgeAsset ;
+            rdfs:comment "Indicates that an EvaluationParameter measurement or assessment is documented in a KnowledgeAsset."@en ;
+            rdfs:label "reported in"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#requestedFor
+:requestedFor rdf:type owl:ObjectProperty ;
+              rdfs:domain :Process ;
+              rdfs:range :KnowledgeAsset ;
+              rdfs:comment "Inverse of :isResultOf. Indicates that a Process requested or required the production of a KnowledgeAsset."@en ;
+              rdfs:label "requested for"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#uses
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:domain :Project ;
+      rdfs:range :BestPractice ;
+      rdfs:comment "Links a Project to the BestPractice it employs. This property captures the application of established practices in project activities."@en ;
+      rdfs:label "uses"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#demographic
+:demographic rdf:type owl:DatatypeProperty ;
+             rdfs:comment "Demographic characteristics including identifier, title, name, and temporal metadata. These properties provide basic descriptive information about entities."@en ;
+             rdfs:label "demographic"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasCodificationRate
+:hasCodificationRate rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :typology ;
+                     rdfs:domain :KnowledgeAsset ;
+                     rdfs:range xsd:int ;
+                     rdfs:comment "The rate of codification of knowledge on a scale from 1 to 10, where 1 represents highly tacit, uncodified knowledge and 10 represents fully codified, documented knowledge. This property operationalises the codification-tacitness dimension of the C3EEP typology."@en ;
+                     rdfs:label "has codification rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasCompetetiveRate
+:hasCompetetiveRate rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :typology ;
+                    rdfs:domain :KnowledgeAsset ;
+                    rdfs:range xsd:int ;
+                    rdfs:comment "The competitive position of knowledge: 1 = core knowledge (essential for operations), 5 = advanced knowledge (competitive advantage), 10 = innovative knowledge (market-leading). This property operationalises the competitive dimension of knowledge strategy."@en ;
+                    rdfs:label "has competitive rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasCostRate
+:hasCostRate rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :risk ;
+             rdfs:domain :KnowledgeAsset ;
+             rdfs:range xsd:int ;
+             rdfs:comment "The rate of knowledge cost on a scale from 1 to 10, where 1 represents low cost and 10 represents very high acquisition or replacement cost. This property supports knowledge risk assessment."@en ;
+             rdfs:label "has cost rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasDifficultyRate
+:hasDifficultyRate rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :risk ;
+                   rdfs:domain :KnowledgeAsset ;
+                   rdfs:range xsd:int ;
+                   rdfs:comment "The rate of knowledge acquisition difficulty on a scale from 1 to 10, where 1 represents simple, easy-to-acquire knowledge and 10 represents highly complex, difficult-to-acquire knowledge. This property supports knowledge risk assessment."@en ;
+                   rdfs:label "has difficulty rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasGreenImportancyRate
+:hasGreenImportancyRate rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :risk ;
+                        rdfs:domain :KnowledgeAsset ;
+                        rdfs:range xsd:int ;
+                        rdfs:comment "The rate of green importance on a scale from 1 to 10, where 1 represents low relevance to green management and 10 represents critical importance for environmental sustainability. This property supports the identification of HighRiskGreenKB."@en ;
+                        rdfs:label "has green importance rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasID
+:hasID rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :demographic ;
+       rdfs:domain owl:Thing ;
+       rdfs:range rdfs:Literal ;
+       rdfs:comment "A unique identifier for an entity within the knowledge base. This property provides a consistent reference for all individuals."@en ;
+       rdfs:label "has ID"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasKnowledgeLocation
+:hasKnowledgeLocation rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :typology ;
+                      rdfs:domain :KnowledgeAsset ;
+                      rdfs:range xsd:int ;
+                      rdfs:comment "The spatial location of knowledge: 1 = local or organisation-specific, 5 = national level, 10 = international or global level. This property captures the geographic reach and applicability of knowledge."@en ;
+                      rdfs:label "has knowledge location"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasKnowledgeType
+:hasKnowledgeType rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :typology ;
+                  rdfs:domain :KnowledgeAsset ;
+                  rdfs:range xsd:int ;
+                  rdfs:comment "The type of knowledge represented as the sum of five components (what, who, why, how, where). Each component scores either 0 (absent) or 2 (present), yielding a total between 0 and 10. This property operationalises the knowledge type dimensions of the C3EEP typology."@en ;
+                  rdfs:label "has knowledge type"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasName
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :demographic ;
+         rdfs:domain :Person ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "The name of a Person. This property captures the identity of knowledge workers."@en ;
+         rdfs:label "has name"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasScopeArea
+:hasScopeArea rdf:type owl:DatatypeProperty ;
+              rdfs:domain :PolicyAndRegulation ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "The scope area of a PolicyAndRegulation. This property describes the domain or sector to which a policy applies."@en ;
+              rdfs:label "has scope area"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasStrategicImportancyRate
+:hasStrategicImportancyRate rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf :risk ;
+                            rdfs:domain :KnowledgeAsset ;
+                            rdfs:range xsd:int ;
+                            rdfs:comment "The rate of strategic importance on a scale from 1 to 10, where 1 represents low strategic relevance and 10 represents critical strategic importance. This property supports knowledge risk assessment and strategy formulation."@en ;
+                            rdfs:label "has strategic importance rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasTitle
+:hasTitle rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :demographic ;
+          rdfs:domain owl:Thing ;
+          rdfs:range rdfs:Literal ;
+          rdfs:comment "The title or name of an entity. This property provides a human-readable label for individuals."@en ;
+          rdfs:label "has title"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasTransparencyRate
+:hasTransparencyRate rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :typology ;
+                     rdfs:domain :KnowledgeAsset ;
+                     rdfs:range xsd:int ;
+                     rdfs:comment "The rate of knowledge transparency on a scale from 1 to 10, where 1 represents concealed, difficult-to-access knowledge and 10 represents transparent, readily accessible knowledge. This property operationalises the concealment-transparency dimension of the C3EEP typology."@en ;
+                     rdfs:label "has transparency rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasYearOfCreate
+:hasYearOfCreate rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :demographic ;
+                 rdfs:domain :KnowledgeAsset ;
+                 rdfs:range xsd:gYear ;
+                 rdfs:comment "The year when a KnowledgeAsset was created. This property captures the temporal dimension of knowledge production."@en ;
+                 rdfs:label "has year of creation"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#hasYearOfNeed
+:hasYearOfNeed rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :demographic ;
+               rdfs:domain :KnowledgeAsset ;
+               rdfs:range xsd:gYear ;
+               rdfs:comment "The year when a KnowledgeAsset becomes needed or relevant. This property supports knowledge planning and anticipation of future requirements."@en ;
+               rdfs:label "has year of need"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#knowledgeAssessment
+:knowledgeAssessment rdf:type owl:DatatypeProperty ;
+                     rdfs:comment "Knowledge assessment properties encompassing typology and risk dimensions. These properties characterise knowledge assets along multiple analytical dimensions derived from the knowledge management literature."@en ;
+                     rdfs:label "knowledge assessment"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#risk
+:risk rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :knowledgeAssessment ;
+      rdfs:domain :KnowledgeAsset ;
+      rdfs:comment "Risk properties assessing knowledge risk factors including acquisition difficulty, strategic importance, cost, and green importance. These properties support knowledge risk assessment and the identification of high-risk knowledge assets."@en ;
+      rdfs:label "risk"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#typology
+:typology rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :knowledgeAssessment ;
+          rdfs:domain :KnowledgeAsset ;
+          rdfs:comment "Typology properties characterising knowledge structure, type, competitive position, and location. These properties operationalise the C3EEP typology (Codification, Complementarity, Concealment, Exploration, External/Internal, Process/Product) for knowledge characterisation."@en ;
+          rdfs:label "typology"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/nemo/gufo#AbstractIndividual
+gufo:AbstractIndividual rdf:type owl:Class ;
+                        rdfs:comment "A class representing abstract individuals in the gUFO foundational ontology. Abstract individuals are non-physical entities such as concepts, descriptions, and information content."@en ;
+                        rdfs:label "Abstract Individual"@en .
+
+
+###  http://purl.org/nemo/gufo#Event
+gufo:Event rdf:type owl:Class ;
+           rdfs:comment "A class representing perdurants (events that unfold over time) in the gUFO foundational ontology. Events have temporal parts and involve change. This class provides the foundation for modelling processes and projects."@en ;
+           rdfs:label "Event"@en .
+
+
+###  http://purl.org/nemo/gufo#Object
+gufo:Object rdf:type owl:Class ;
+            rdfs:comment "A class representing endurants (objects that exist wholly at each point in time) in the gUFO foundational ontology. Objects maintain their identity over time and have no temporal parts."@en ;
+            rdfs:label "Object"@en .
+
+
+###  http://purl.org/nemo/gufo#Role
+gufo:Role rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#VariableCollection
+gufo:VariableCollection rdf:type owl:Class ;
+                        rdfs:comment "A class representing collections whose membership can change over time. This class supports the modelling of organisational units and work groups."@en ;
+                        rdfs:label "Variable Collection"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#AuditReport
+:AuditReport rdf:type owl:Class ;
+             rdfs:subClassOf :Report ;
+             rdfs:comment "An audit report as a knowledge resource. Audit reports document compliance assessments and quality evaluations."@en ;
+             rdfs:label "Audit Report"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#AutomationAndBusinessProcessSystem
+:AutomationAndBusinessProcessSystem rdf:type owl:Class ;
+                                    rdfs:subClassOf :InformationSystem ;
+                                    rdfs:comment "An automation and business process system. These systems automate business processes and support operational efficiency."@en ;
+                                    rdfs:label "Automation and Business Process System"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#BestPractice
+:BestPractice rdf:type owl:Class ;
+              rdfs:subClassOf gufo:Object ,
+                              sco-u:SCO_0000013 ;
+              rdfs:comment "A documented method, procedure, or practice that has been proven effective for achieving a specific outcome. Best practices represent established approaches to organisational activities. They are represented as endurants in the current version, capturing their status as documented knowledge assets."@en ;
+              rdfs:label "Best Practice"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#BiomassConsumptionMeasurement
+:BiomassConsumptionMeasurement rdf:type owl:Class ;
+                               rdfs:subClassOf :CarbonFootprintParameter ;
+                               rdfs:comment "A measurement of biomass consumption as a carbon footprint indicator. This parameter assesses the use of biomass as an energy source."@en ;
+                               rdfs:label "Biomass Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Book
+:Book rdf:type owl:Class ;
+      rdfs:subClassOf :Documentation ;
+      rdfs:comment "A published or unpublished book as a knowledge resource. Books represent comprehensive, structured knowledge on specific topics."@en ;
+      rdfs:label "Book"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#CarbonFootprintParameter
+:CarbonFootprintParameter rdf:type owl:Class ;
+                          rdfs:subClassOf :EvaluationParameter ;
+                          rdfs:comment "A parameter for assessing carbon footprint. Carbon footprint parameters measure the greenhouse gas emissions associated with organisational activities."@en ;
+                          rdfs:label "Carbon Footprint Parameter"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#CommunityEngagement
+:CommunityEngagement rdf:type owl:Class ;
+                     rdfs:subClassOf :SocialResponsibilityParameter ;
+                     rdfs:comment "A parameter measuring community engagement. This parameter assesses the organisation's relationship with local communities."@en ;
+                     rdfs:label "Community Engagement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Contract
+:Contract rdf:type owl:Class ;
+          rdfs:subClassOf :Record ;
+          rdfs:comment "A contract as a recorded knowledge resource. Contracts document formal agreements between parties."@en ;
+          rdfs:label "Contract"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#CorrectivePreventiveActionRecord
+:CorrectivePreventiveActionRecord rdf:type owl:Class ;
+                                  rdfs:subClassOf :Record ;
+                                  rdfs:comment "A corrective and preventive action record. These records document quality improvement actions and their outcomes."@en ;
+                                  rdfs:label "Corrective Preventive Action Record"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Documentation
+:Documentation rdf:type owl:Class ;
+               rdfs:subClassOf :KnowledgeAsset ;
+               rdfs:comment "Documented knowledge resources including books, reports, instruction procedures, and visual maps. Documentation represents formal, structured knowledge that has been codified for sharing and reuse."@en ;
+               rdfs:label "Documentation"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ElectricityConsumptionMeasurement
+:ElectricityConsumptionMeasurement rdf:type owl:Class ;
+                                   rdfs:subClassOf :CarbonFootprintParameter ;
+                                   rdfs:comment "A measurement of electricity consumption as a carbon footprint indicator. This parameter assesses electricity usage and associated emissions."@en ;
+                                   rdfs:label "Electricity Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EmissionPolicy
+:EmissionPolicy rdf:type owl:Class ;
+                rdfs:subClassOf :PolicyAndRegulation ;
+                rdfs:comment "A policy or regulation concerning emissions, greenhouse gases, and atmospheric pollution. Emission policies drive the adoption of clean technologies."@en ;
+                rdfs:label "Emission Policy"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EmployeeSatisfaction
+:EmployeeSatisfaction rdf:type owl:Class ;
+                      rdfs:subClassOf :SocialResponsibilityParameter ;
+                      rdfs:comment "A parameter measuring employee satisfaction. This parameter assesses the well-being and engagement of employees."@en ;
+                      rdfs:label "Employee Satisfaction"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EmployeeTurnoverRate
+:EmployeeTurnoverRate rdf:type owl:Class ;
+                      rdfs:subClassOf :SocialResponsibilityParameter ;
+                      rdfs:comment "A parameter measuring employee turnover rate. This parameter assesses workforce stability and retention."@en ;
+                      rdfs:label "Employee Turnover Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyConsumptionIndex
+:EnergyConsumptionIndex rdf:type owl:Class ;
+                        rdfs:subClassOf :EnergyEfficiencyRate ;
+                        rdfs:comment "An index measuring energy consumption. This parameter provides a comprehensive view of energy usage patterns."@en ;
+                        rdfs:label "Energy Consumption Index"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyCostSaving
+:EnergyCostSaving rdf:type owl:Class ;
+                  rdfs:subClassOf :EnergyEfficiencyRate ;
+                  rdfs:comment "A parameter measuring energy cost savings. This parameter assesses the financial benefits of energy efficiency improvements."@en ;
+                  rdfs:label "Energy Cost Saving"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyEfficiencyPolicy
+:EnergyEfficiencyPolicy rdf:type owl:Class ;
+                        rdfs:subClassOf :PolicyAndRegulation ;
+                        rdfs:comment "A policy or regulation concerning energy efficiency and energy management. Energy efficiency policies promote the adoption of energy-efficient technologies."@en ;
+                        rdfs:label "Energy Efficiency Policy"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyEfficiencyRate
+:EnergyEfficiencyRate rdf:type owl:Class ;
+                      rdfs:subClassOf :EvaluationParameter ;
+                      rdfs:comment "A parameter for assessing energy efficiency. Energy efficiency rates measure the relationship between energy input and useful output."@en ;
+                      rdfs:label "Energy Efficiency Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyEfficiencyRatio
+:EnergyEfficiencyRatio rdf:type owl:Class ;
+                       rdfs:subClassOf :EnergyEfficiencyRate ;
+                       rdfs:comment "A ratio measuring energy efficiency. This parameter compares energy input to useful output."@en ;
+                       rdfs:label "Energy Efficiency Ratio"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyEfficientTechnology
+:EnergyEfficientTechnology rdf:type owl:Class ;
+                           rdfs:subClassOf :GreenTechnology ;
+                           rdfs:comment "A technology that improves energy efficiency. Energy-efficient technologies reduce energy consumption per unit of output and contribute to carbon footprint reduction."@en ;
+                           rdfs:label "Energy Efficient Technology"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnergyIntensity
+:EnergyIntensity rdf:type owl:Class ;
+                 rdfs:subClassOf :EnergyEfficiencyRate ;
+                 rdfs:comment "A parameter measuring energy intensity per unit of output. This parameter assesses energy efficiency at the activity level."@en ;
+                 rdfs:label "Energy Intensity"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EnvironmentalManagementSystem
+:EnvironmentalManagementSystem rdf:type owl:Class ;
+                               rdfs:subClassOf :Systematic ;
+                               rdfs:comment "An environmental management system as a best practice. This includes standards such as ISO 14001 that provide frameworks for managing environmental performance."@en ;
+                               rdfs:label "Environmental Management System"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#EvaluationParameter
+:EvaluationParameter rdf:type owl:Class ;
+                     rdfs:subClassOf sco-u:SCO_0000003 ;
+                     rdfs:comment "A defined criterion or variable used to assess sustainability performance. This class represents the parameter concept itself (e.g., 'Carbon Footprint'), not the measured value. The measurement value is captured through data properties or separate indicator value instances. Evaluation parameters operationalise the Triple Bottom Line framework across environmental, social, and economic dimensions."@en ;
+                     rdfs:label "Evaluation Parameter"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#FuelConsumptionMeasurement
+:FuelConsumptionMeasurement rdf:type owl:Class ;
+                            rdfs:subClassOf :CarbonFootprintParameter ;
+                            rdfs:comment "A measurement of fuel consumption as a carbon footprint indicator. This parameter assesses fuel usage and associated emissions."@en ;
+                            rdfs:label "Fuel Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#GreenKnowledge
+:GreenKnowledge rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :isCompletedFor ;
+                                                             owl:someValuesFrom :GreenTechProject
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :KnowledgeAsset ;
+                rdfs:comment "A knowledge asset completed for a GreenTechProject. This inferred class is derived automatically by the reasoner. GreenKnowledge represents knowledge that is directly relevant to green technology projects and sustainability initiatives."@en ;
+                rdfs:label "Green Knowledge"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#GreenKnowledgeWorker
+:GreenKnowledgeWorker rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :prepares ;
+                                                                   owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass :GreenKnowledge
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :Person ;
+                      rdfs:comment "A person who has prepared at least three GreenKnowledge assets. This inferred class is derived automatically by the reasoner. GreenKnowledgeWorkers are key individuals in the organisation's green knowledge ecosystem."@en ;
+                      rdfs:label "Green Knowledge Worker"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#GreenTechProject
+:GreenTechProject rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Project
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasApplied ;
+                                                               owl:someValuesFrom :GreenTechnology
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  rdfs:subClassOf :Project ;
+                  rdfs:comment "A project that applies at least one GreenTechnology. This inferred class is derived automatically by the reasoner based on the :hasApplied property. GreenTechProjects represent the operational integration of sustainability technologies into organisational initiatives."@en ;
+                  rdfs:label "Green Tech Project"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#GreenTechnology
+:GreenTechnology rdf:type owl:Class ;
+                 rdfs:subClassOf gufo:Object ,
+                                 sco-u:SCO_0000013 ;
+                 rdfs:comment "A tangible technology or device that contributes to environmental sustainability. This class encompasses physical technologies and devices such as energy management systems, renewable energy sources, and waste reduction technologies. Processual technologies (e.g., pyrolysis, gasification) are noted as a modelling boundary; while currently classified under this class for pragmatic reasons, they are identified for future refinement as instances of a dedicated :GreenProcess class."@en ;
+                 rdfs:label "Green Technology"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#GreenhouseGasEmission
+:GreenhouseGasEmission rdf:type owl:Class ;
+                       rdfs:subClassOf :EvaluationParameter ;
+                       rdfs:comment "A parameter for assessing greenhouse gas emissions. This parameter measures direct and indirect emissions of greenhouse gases."@en ;
+                       rdfs:label "Greenhouse Gas Emission"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#GroupMember
+:GroupMember rdf:type owl:Class ;
+             rdfs:subClassOf :Person ;
+             rdfs:comment "A person acting as a member of a group or community of practice. This class captures participation in informal or formal groups beyond formal organisational units."@en ;
+             rdfs:label "Group Member"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#HighRiskGreenKB
+:HighRiskGreenKB rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :HighRiskKB
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasGreenImportancyRate ;
+                                                              owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                                                              owl:onDataRange xsd:int
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf :KnowledgeAsset ;
+                 rdfs:comment "A HighRiskKB that additionally has a green importance rate ≥ 8. This inferred class is derived automatically by the reasoner. HighRiskGreenKB identifies knowledge assets that are both high-risk and critically important for green management."@en ;
+                 rdfs:label "High Risk Green KB"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#HighRiskKB
+:HighRiskKB rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasCostRate ;
+                                                         owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                                                         owl:onDataRange xsd:int
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasDifficultyRate ;
+                                                         owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                                                         owl:onDataRange xsd:int
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasStrategicImportancyRate ;
+                                                         owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                                                         owl:onDataRange xsd:int
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasCodificationRate ;
+                                                         owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                                         owl:onDataRange xsd:int
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:subClassOf :KnowledgeAsset ;
+            rdfs:comment "A knowledge asset that simultaneously meets four risk criteria: cost rate ≥ 8, difficulty rate ≥ 8, strategic importance rate ≥ 8, and codification rate ≤ 4. This inferred class is derived automatically by the reasoner. HighRiskKB identifies knowledge assets requiring urgent attention for preservation and transfer."@en ;
+            rdfs:label "High Risk KB"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#HumanFinancialResourceUnit
+:HumanFinancialResourceUnit rdf:type owl:Class ;
+                            rdfs:subClassOf :OrganizationalUnit ;
+                            rdfs:comment "An organisational unit responsible for managing human and financial resources. This unit oversees staffing, budgeting, and resource allocation."@en ;
+                            rdfs:label "Human Financial Resource Unit"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#InformationSystem
+:InformationSystem rdf:type owl:Class ;
+                   rdfs:subClassOf :KnowledgeAsset ;
+                   rdfs:comment "An information system as a knowledge resource. Information systems provide infrastructure for knowledge storage, retrieval, and dissemination."@en ;
+                   rdfs:label "Information System"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#InstructionProcedure
+:InstructionProcedure rdf:type owl:Class ;
+                      rdfs:subClassOf :Documentation ;
+                      rdfs:comment "A documented procedure or instruction guiding organisational activities. Instruction procedures operationalise best practices and provide step-by-step guidance for processes."@en ;
+                      rdfs:label "Instruction Procedure"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#IntegratedTransactionalSystem
+:IntegratedTransactionalSystem rdf:type owl:Class ;
+                               rdfs:subClassOf :InformationSystem ;
+                               rdfs:comment "An integrated transactional system. These systems support business transactions and integrate multiple business functions."@en ;
+                               rdfs:label "Integrated Transactional System"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#IntelligentAndExpertSystem
+:IntelligentAndExpertSystem rdf:type owl:Class ;
+                            rdfs:subClassOf :InformationSystem ;
+                            rdfs:comment "An intelligent and expert system. These systems incorporate artificial intelligence and expert knowledge for decision support."@en ;
+                            rdfs:label "Intelligent and Expert System"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#KBCodificationStrategy
+:KBCodificationStrategy rdf:type owl:Class ;
+                        owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset
+                                                                   [ rdf:type owl:Class ;
+                                                                     owl:complementOf [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty :hasKnowledgeLocation ;
+                                                                                        owl:hasValue 1
+                                                                                      ]
+                                                                   ]
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :hasKnowledgeType ;
+                                                                     owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:int
+                                                                   ]
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :hasCodificationRate ;
+                                                                     owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:int
+                                                                   ]
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :hasCompetetiveRate ;
+                                                                     owl:maxQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:int
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
+                                            ] ;
+                        rdfs:subClassOf :KnowledgeAsset ;
+                        rdfs:comment "A knowledge asset recommended for codification strategy: core or advanced knowledge (competitive rate ≤ 5), low codification (≤ 4), high knowledge type diversity (≥ 6), and not organisation-specific (knowledge location ≠ 1). This inferred class provides automated strategy recommendations for knowledge management."@en ;
+                        rdfs:label "KB Codification Strategy"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#KBPersonalizationStrategy
+:KBPersonalizationStrategy rdf:type owl:Class ;
+                           owl:equivalentClass [ owl:intersectionOf ( :KnowledgeAsset
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty :hasCodificationRate ;
+                                                                        owl:hasValue 10
+                                                                      ]
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty :hasKnowledgeLocation ;
+                                                                        owl:hasValue 1
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
+                                               ] ;
+                           rdfs:subClassOf :KnowledgeAsset ;
+                           rdfs:comment "A knowledge asset recommended for personalisation strategy: organisation-specific (location = 1), fully codified (10), and innovative (competitive rate = 10). This inferred class provides automated strategy recommendations for knowledge management."@en ;
+                           rdfs:label "KB Personalization Strategy"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#KnowledgeAsset
+:KnowledgeAsset rdf:type owl:Class ;
+                rdfs:subClassOf gufo:Object ;
+                rdfs:comment "A knowledge resource produced, used, or maintained within the organisation, including documentation, records, and information systems. This class represents the knowledge resource as an endurant object. Knowledge assets embody the codified and recorded knowledge of the organisation and serve as the foundation for knowledge management activities."@en ;
+                rdfs:label "Knowledge Asset"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#LessonLearned
+:LessonLearned rdf:type owl:Class ;
+               rdfs:subClassOf :Record ;
+               rdfs:comment "A lessons learned document as a recorded knowledge resource. These documents capture experiential knowledge from projects and processes."@en ;
+               rdfs:label "Lesson Learned"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#LifeCycleAssessment
+:LifeCycleAssessment rdf:type owl:Class ;
+                     rdfs:subClassOf :EvaluationParameter ;
+                     rdfs:comment "A parameter for life cycle assessment. This parameter evaluates environmental impacts across the entire life cycle of products or services."@en ;
+                     rdfs:label "Life Cycle Assessment"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#LogSheet
+:LogSheet rdf:type owl:Class ;
+          rdfs:subClassOf :Record ;
+          rdfs:comment "A log sheet as a recorded knowledge resource. Log sheets document ongoing activities, observations, and measurements."@en ;
+          rdfs:label "Log Sheet"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ManagementReviewReport
+:ManagementReviewReport rdf:type owl:Class ;
+                        rdfs:subClassOf :Report ;
+                        rdfs:comment "A management review report as a knowledge resource. These reports document strategic reviews and governance decisions."@en ;
+                        rdfs:label "Management Review Report"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ManagerialUnit
+:ManagerialUnit rdf:type owl:Class ;
+                rdfs:subClassOf :OrganizationalUnit ;
+                rdfs:comment "An organisational unit responsible for managerial and administrative functions. This unit coordinates activities and oversees operations."@en ;
+                rdfs:label "Managerial Unit"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#MapVisualDoc
+:MapVisualDoc rdf:type owl:Class ;
+              rdfs:subClassOf :Documentation ;
+              rdfs:comment "A visual map, diagram, or chart as a knowledge resource. Visual documentation supports spatial understanding and knowledge visualisation."@en ;
+              rdfs:label "Map Visual Doc"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#MaterialConsumptionMeasurement
+:MaterialConsumptionMeasurement rdf:type owl:Class ;
+                                rdfs:subClassOf :CarbonFootprintParameter ;
+                                rdfs:comment "A measurement of material consumption as a carbon footprint indicator. This parameter assesses material usage and associated environmental impacts."@en ;
+                                rdfs:label "Material Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#MaterialEfficiency
+:MaterialEfficiency rdf:type owl:Class ;
+                    rdfs:subClassOf :ResourceConservationRate ;
+                    rdfs:comment "A parameter measuring material efficiency. This parameter assesses the effective use of materials in production processes."@en ;
+                    rdfs:label "Material Efficiency"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#MaterialSelectionAndLifecycleAnalysis
+:MaterialSelectionAndLifecycleAnalysis rdf:type owl:Class ;
+                                       rdfs:subClassOf :GreenTechnology ;
+                                       rdfs:comment "A technology supporting material selection and life cycle analysis. These technologies enable informed decisions about material choices and their environmental impacts."@en ;
+                                       rdfs:label "Material Selection and Lifecycle Analysis"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#NaturalGasConsumptionMeasurement
+:NaturalGasConsumptionMeasurement rdf:type owl:Class ;
+                                  rdfs:subClassOf :CarbonFootprintParameter ;
+                                  rdfs:comment "A measurement of natural gas consumption as a carbon footprint indicator. This parameter assesses natural gas usage and associated emissions."@en ;
+                                  rdfs:label "Natural Gas Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#NonGreenTechProject
+:NonGreenTechProject rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :Project
+                                                                [ rdf:type owl:Class ;
+                                                                  owl:complementOf [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty :hasApplied ;
+                                                                                     owl:someValuesFrom :GreenTechnology
+                                                                                   ]
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     rdfs:subClassOf :Project ;
+                     rdfs:comment "A project that does not apply any GreenTechnology. This inferred class is derived automatically by the reasoner. NonGreenTechProjects may still have sustainability relevance through other mechanisms."@en ;
+                     rdfs:label "Non Green Tech Project"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#OilConsumptionMeasurement
+:OilConsumptionMeasurement rdf:type owl:Class ;
+                           rdfs:subClassOf :CarbonFootprintParameter ;
+                           rdfs:comment "A measurement of oil consumption as a carbon footprint indicator. This parameter assesses oil usage and associated emissions."@en ;
+                           rdfs:label "Oil Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#OrganizationalUnit
+:OrganizationalUnit rdf:type owl:Class ;
+                    rdfs:subClassOf gufo:VariableCollection ,
+                                    sco-u:SCO_0000015 ;
+                    rdfs:comment "A collection of people and resources organised for a specific purpose within the organisation. Organisational units are variable collections whose membership can change over time. They serve as containers for workforce management and responsibility assignment."@en ;
+                    rdfs:label "Organizational Unit"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#PaperConsumptionMeasurement
+:PaperConsumptionMeasurement rdf:type owl:Class ;
+                             rdfs:subClassOf :CarbonFootprintParameter ;
+                             rdfs:comment "A measurement of paper consumption as a carbon footprint indicator. This parameter assesses paper usage and associated environmental impacts."@en ;
+                             rdfs:label "Paper Consumption Measurement"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Person
+:Person rdf:type owl:Class ;
+        rdfs:subClassOf gufo:Object ,
+                        sco-u:SCO_0000029 ;
+        rdfs:comment "An individual human being who acts as an agent within the organisation. Persons are endurants with independent identity. They serve as knowledge workers, managers, and experts. This class follows the UFO foundational distinction between endurants and roles."@en ;
+        rdfs:label "Person"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#PolicyAndRegulation
+:PolicyAndRegulation rdf:type owl:Class ;
+                     rdfs:subClassOf gufo:Object ,
+                                     sco-u:SCO_0000013 ;
+                     rdfs:comment "An officially adopted rule, standard, or directive that guides organisational behaviour. Policies and regulations influence the adoption of green technologies and best practices. They are represented as endurants in the current version."@en ;
+                     rdfs:label "Policy and Regulation"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Process
+:Process rdf:type owl:Class ;
+         rdfs:subClassOf gufo:Event ,
+                         sco-u:SCO_0000001 ;
+         rdfs:comment "An organisational activity that unfolds over time, has temporal parts, and involves change. Processes are modelled as subclasses of gufo:Event following the UFO perdurant/endurant distinction. This class represents the actual unfolding of activities, not their descriptions or plans. Processes both generate and consume knowledge at different stages, capturing the process-oriented view of knowledge creation and sharing."@en ;
+         rdfs:label "Process"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ProcessCore
+:ProcessCore rdf:type owl:Class ;
+             rdfs:subClassOf :Process ;
+             rdfs:comment "A core organisational process that directly contributes to the organisation's primary value creation activities. Core processes are essential for delivering products or services and are central to organisational performance."@en ;
+             rdfs:label "Process Core"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ProcessInspective
+:ProcessInspective rdf:type owl:Class ;
+                   rdfs:subClassOf :Process ;
+                   rdfs:comment "An inspective or monitoring process that reviews, audits, and evaluates organisational activities. Inspective processes ensure compliance, quality, and continuous improvement."@en ;
+                   rdfs:label "Process Inspective"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ProcessManagerialAndPlanning
+:ProcessManagerialAndPlanning rdf:type owl:Class ;
+                              rdfs:subClassOf :Process ;
+                              rdfs:comment "A managerial and planning process that sets direction, coordinates activities, and allocates resources. These processes ensure alignment between organisational strategy and operational execution."@en ;
+                              rdfs:label "Process Managerial and Planning"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ProcessSupportive
+:ProcessSupportive rdf:type owl:Class ;
+                   rdfs:subClassOf :Process ;
+                   rdfs:comment "A supportive process that enables or facilitates core organisational activities. Supportive processes include human resource management, procurement, and infrastructure services."@en ;
+                   rdfs:label "Process Supportive"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Project
+:Project rdf:type owl:Class ;
+         rdfs:subClassOf gufo:Event ,
+                         sco-u:SCO_0000001 ;
+         rdfs:comment "A time-bounded undertaking with a defined start and end, unfolding through a sequence of activities. Projects are modelled as gufo:Event subclasses because they are occurrents with temporal parts. This follows the UFO treatment of plans versus their execution, distinguishing between the project description (a plan) and the project itself (the actual undertaking)."@en ;
+         rdfs:label "Project"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ProjectProfile
+:ProjectProfile rdf:type owl:Class ;
+                rdfs:subClassOf :Record ;
+                rdfs:comment "A project profile document as a recorded knowledge resource. Project profiles summarise project objectives, scope, and outcomes."@en ;
+                rdfs:label "Project Profile"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Record
+:Record rdf:type owl:Class ;
+        rdfs:subClassOf :KnowledgeAsset ;
+        rdfs:comment "A recorded knowledge resource including contracts, log sheets, project profiles, session notes, lessons learned, and training records. Records capture experiential knowledge and serve as evidence of organisational activities."@en ;
+        rdfs:label "Record"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#RecyclingMethod
+:RecyclingMethod rdf:type owl:Class ;
+                 rdfs:subClassOf :GreenTechnology ;
+                 rdfs:comment "A technology for recycling materials. Note: Processual recycling methods (e.g., pyrolysis, gasification) are identified for future refinement as processual technologies."@en ;
+                 rdfs:label "Recycling Method"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#RenewableEnergySource
+:RenewableEnergySource rdf:type owl:Class ;
+                       rdfs:subClassOf :GreenTechnology ;
+                       rdfs:comment "A technology that harnesses renewable energy sources such as solar, wind, geothermal, or biomass. These technologies reduce dependence on fossil fuels."@en ;
+                       rdfs:label "Renewable Energy Source"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Report
+:Report rdf:type owl:Class ;
+        rdfs:subClassOf :Documentation ;
+        rdfs:comment "A formal report as a knowledge resource. Reports document findings, assessments, and analyses of organisational activities."@en ;
+        rdfs:label "Report"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#ResourceConservationRate
+:ResourceConservationRate rdf:type owl:Class ;
+                          rdfs:subClassOf :EvaluationParameter ;
+                          rdfs:comment "A parameter for assessing resource conservation. This parameter measures the efficiency of resource use and conservation efforts."@en ;
+                          rdfs:label "Resource Conservation Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Session
+:Session rdf:type owl:Class ;
+         rdfs:subClassOf :Record ;
+         rdfs:comment "A session note or minutes as a recorded knowledge resource. Session notes document meetings, workshops, and collaborative activities."@en ;
+         rdfs:label "Session"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#SocialResponsibilityParameter
+:SocialResponsibilityParameter rdf:type owl:Class ;
+                               rdfs:subClassOf :EvaluationParameter ;
+                               rdfs:comment "A parameter for assessing social responsibility. This parameter addresses the social dimension of the Triple Bottom Line."@en ;
+                               rdfs:label "Social Responsibility Parameter"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#SustainableProcurementPolicy
+:SustainableProcurementPolicy rdf:type owl:Class ;
+                              rdfs:subClassOf :PolicyAndRegulation ;
+                              rdfs:comment "A policy or regulation concerning sustainable procurement and supply-chain sustainability. Sustainable procurement policies integrate environmental criteria into purchasing decisions."@en ;
+                              rdfs:label "Sustainable Procurement Policy"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#SustainableTransportationOption
+:SustainableTransportationOption rdf:type owl:Class ;
+                                 rdfs:subClassOf :GreenTechnology ;
+                                 rdfs:comment "A technology for sustainable transportation, including electric vehicles, hybrid vehicles, and intelligent transportation systems."@en ;
+                                 rdfs:label "Sustainable Transportation Option"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Systematic
+:Systematic rdf:type owl:Class ;
+            rdfs:subClassOf :BestPractice ;
+            rdfs:comment "A systematic best practice, such as a management system standard. Systematic practices provide comprehensive frameworks for organisational management."@en ;
+            rdfs:label "Systematic Best Practice"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#Technical
+:Technical rdf:type owl:Class ;
+           rdfs:subClassOf :BestPractice ;
+           rdfs:comment "A technical best practice. Technical practices provide specific methodologies for technical activities."@en ;
+           rdfs:label "Technical Best Practice"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#TechnologyDevelopmentUnit
+:TechnologyDevelopmentUnit rdf:type owl:Class ;
+                           rdfs:subClassOf :OrganizationalUnit ;
+                           rdfs:comment "An organisational unit responsible for research, development, and innovation in technology. This unit drives the development of new green technologies."@en ;
+                           rdfs:label "Technology Development Unit"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#TechnologySupportUnit
+:TechnologySupportUnit rdf:type owl:Class ;
+                       rdfs:subClassOf :OrganizationalUnit ;
+                       rdfs:comment "An organisational unit responsible for providing technical support and maintenance. This unit ensures the operational effectiveness of technologies."@en ;
+                       rdfs:label "Technology Support Unit"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#TimeAndBudgetPlan
+:TimeAndBudgetPlan rdf:type owl:Class ;
+                   rdfs:subClassOf :Report ;
+                   rdfs:comment "A time and budget plan as a knowledge resource. These plans document resource allocation and scheduling for projects."@en ;
+                   rdfs:label "Time and Budget Plan"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#TrainingAttendance
+:TrainingAttendance rdf:type owl:Class ;
+                    rdfs:subClassOf :Record ;
+                    rdfs:comment "A training attendance record. These records document participation in training and development activities."@en ;
+                    rdfs:label "Training Attendance"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#UnitMember
+:UnitMember rdf:type owl:Class ;
+            rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WasteGenerationRate
+:WasteGenerationRate rdf:type owl:Class ;
+                     rdfs:subClassOf :WasteReductionRate ;
+                     rdfs:comment "A parameter measuring waste generation rate. This parameter assesses the volume of waste produced."@en ;
+                     rdfs:label "Waste Generation Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WasteManagementPolicy
+:WasteManagementPolicy rdf:type owl:Class ;
+                       rdfs:subClassOf :PolicyAndRegulation ;
+                       rdfs:comment "A policy or regulation concerning waste management, recycling, and circular economy. Waste management policies promote waste reduction and resource recovery."@en ;
+                       rdfs:label "Waste Management Policy"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WasteRecyclingRate
+:WasteRecyclingRate rdf:type owl:Class ;
+                    rdfs:subClassOf :WasteReductionRate ;
+                    rdfs:comment "A parameter measuring waste recycling rate. This parameter assesses the proportion of waste that is recycled."@en ;
+                    rdfs:label "Waste Recycling Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WasteReduction
+:WasteReduction rdf:type owl:Class ;
+                rdfs:subClassOf :GreenTechnology ;
+                rdfs:comment "A technology that reduces waste generation or enables waste valorisation. These technologies support circular economy principles."@en ;
+                rdfs:label "Waste Reduction"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WasteReductionRate
+:WasteReductionRate rdf:type owl:Class ;
+                    rdfs:subClassOf :EvaluationParameter ;
+                    rdfs:comment "A parameter for assessing waste reduction. This parameter measures the effectiveness of waste reduction efforts."@en ;
+                    rdfs:label "Waste Reduction Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WasteToEnergyConservationRate
+:WasteToEnergyConservationRate rdf:type owl:Class ;
+                               rdfs:subClassOf :WasteReductionRate ;
+                               rdfs:comment "A parameter measuring waste-to-energy conservation rate. This parameter assesses the recovery of energy from waste streams."@en ;
+                               rdfs:label "Waste to Energy Conservation Rate"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WaterConservationTechnique
+:WaterConservationTechnique rdf:type owl:Class ;
+                            rdfs:subClassOf :GreenTechnology ;
+                            rdfs:comment "A technology that conserves water resources through efficient use, recycling, or alternative sourcing."@en ;
+                            rdfs:label "Water Conservation Technique"@en .
+
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#WaterEfficiency
+:WaterEfficiency rdf:type owl:Class ;
+                 rdfs:subClassOf :ResourceConservationRate ;
+                 rdfs:comment "A parameter measuring water efficiency. This parameter assesses the effective use of water resources."@en ;
+                 rdfs:label "Water Efficiency"@en .
+
+
+###  https://www.w3id.org/sco/sco-u#SCO_0000001
+sco-u:SCO_0000001 rdf:type owl:Class ;
+                  rdfs:comment "SCO-U Interaction class. Represents interactions between system components, providing a middle-level category for process modelling."@en ;
+                  rdfs:label "Interaction"@en .
+
+
+###  https://www.w3id.org/sco/sco-u#SCO_0000003
+sco-u:SCO_0000003 rdf:type owl:Class ;
+                  rdfs:comment "SCO-U IndicatorValue class. Represents measurable values or criteria for assessing sustainability performance."@en ;
+                  rdfs:label "Indicator Value"@en .
+
+
+###  https://www.w3id.org/sco/sco-u#SCO_0000013
+sco-u:SCO_0000013 rdf:type owl:Class ;
+                  rdfs:comment "SCO-U SystemComponent class. Represents components that form part of a system, including physical and abstract elements."@en ;
+                  rdfs:label "System Component"@en .
+
+
+###  https://www.w3id.org/sco/sco-u#SCO_0000015
+sco-u:SCO_0000015 rdf:type owl:Class ;
+                  rdfs:comment "SCO-U ComplexSystem class. Represents systems composed of multiple interacting components."@en ;
+                  rdfs:label "Complex System"@en .
+
+
+###  https://www.w3id.org/sco/sco-u#SCO_0000029
+sco-u:SCO_0000029 rdf:type owl:Class ;
+                  rdfs:comment "SCO-U Agent class. Represents entities capable of intentional action, including persons and organisations."@en ;
+                  rdfs:label "Agent"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/tak/ontologies/2023/10/greenkmonto#UnitMember
+:UnitMember rdf:type owl:NamedIndividual ,
+                     gufo:Role .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:UnitMember rdfs:comment "A person acting in an organisational role as a member of an organisational unit. This class represents the role semantics of a person within the organisation, capturing their formal position and responsibilities. The role semantics align with the UFO treatment of roles as relational properties."@en ;
+            rdfs:label "Unit Member"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ProcessCore
+                :ProcessInspective
+                :ProcessManagerialAndPlanning
+                :ProcessSupportive
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :WasteGenerationRate
+                :WasteRecyclingRate
+                :WasteToEnergyConservationRate
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
